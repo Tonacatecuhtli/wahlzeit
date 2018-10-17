@@ -1,1 +1,5 @@
 Pictures (jpg) in this folder will be automatically added on application start-up.
+
+M8: https://www.nasa.gov/image-feature/celebrating-28-years-of-the-hubble-space-telescope
+NGC6326: https://www.nasa.gov/image-feature/goddard/2017/hubbles-holiday-nebula-ornament
+NGC7331: https://www.nasa.gov/image-feature/goddard/2018/hubbles-majestic-spiral-in-pegasus
