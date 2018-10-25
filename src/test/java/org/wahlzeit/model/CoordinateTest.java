@@ -1,14 +1,9 @@
 package org.wahlzeit.model;
 
 import org.junit.Test;
-
-import java.util.logging.Logger;
-
 import static org.junit.Assert.*;
 
 public class CoordinateTest {
-
-    private static final Logger log = Logger.getLogger(CoordinateTest.class.getName());
 
     private Coordinate c1 = new Coordinate(1,1,1);
     private Coordinate c2 = new Coordinate(2,2,2);
