@@ -1,5 +1,6 @@
 package org.wahlzeit.model;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
@@ -29,6 +30,13 @@ public class CoordinateTest {
         // c2 with 2,2,2 - c1 with 1,1,1 = 1.7320508075688772;
         assertEquals(c1.getDistance(c2),1.7320508075688772, epsilon);
         assertEquals(c1.getDistance(c1), 0, epsilon);
+    }
+
+    @After
+    public void tearDown () {
+        // remove references so that garbage collection will delete the objects.
+        c1 = null;
+        c2 = null;
     }
 
 }
