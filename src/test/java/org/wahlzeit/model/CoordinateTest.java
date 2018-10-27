@@ -1,15 +1,22 @@
 package org.wahlzeit.model;
 
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
 public class CoordinateTest {
 
-    private Coordinate c1 = new Coordinate(1,1,1);
-    private Coordinate c2 = new Coordinate(2,2,2);
+    private Coordinate c1;
+    private Coordinate c2;
 
     // delta of which assertEquals double, test variables can be different
     private static final double epsilon = 1e-10;
+
+    @Before
+    public void setUp () {
+        c1 = new Coordinate(1,1,1);
+        c2 = new Coordinate(2,2,2);
+    }
 
     @Test
     public void testIsEqual() {

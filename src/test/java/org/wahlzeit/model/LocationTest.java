@@ -10,7 +10,7 @@ public class LocationTest {
     private Location location = new Location();
 
     @Before
-    public void setCoordinatesTest () {
+    public void setUp () {
         Coordinate a = new Coordinate(3,3,3);
         location.setCoordinate(a);
     }
