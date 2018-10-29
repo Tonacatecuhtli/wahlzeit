@@ -38,8 +38,8 @@ public class CoordinateTest {
     public void setUp () {
         c1 = new Coordinate(1,1,1);
         c2 = new Coordinate(2,2,2);
-        // c2 with 2,2,2 - c1 with 1,1,1 = 1.7320508075688772;
-        c1GetDistanceC2 = 1.7320508075688772;
+        // c2 with 2,2,2 - c1 with 1,1,1 = sqrt(3)
+        c1GetDistanceC2 = Math.sqrt(3);
     }
 
     @Test
