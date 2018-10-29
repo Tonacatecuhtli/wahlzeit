@@ -29,6 +29,7 @@ public class CoordinateTest {
 
     private Coordinate c1;
     private Coordinate c2;
+    private double c1GetDistanceC2;
 
     // delta of which assertEquals double, test variables can be different
     private static final double epsilon = 1e-10;
@@ -37,6 +38,8 @@ public class CoordinateTest {
     public void setUp () {
         c1 = new Coordinate(1,1,1);
         c2 = new Coordinate(2,2,2);
+        // c2 with 2,2,2 - c1 with 1,1,1 = 1.7320508075688772;
+        c1GetDistanceC2 = 1.7320508075688772;
     }
 
     @Test
@@ -47,8 +50,7 @@ public class CoordinateTest {
 
     @Test
     public void testDistance() {
-        // c2 with 2,2,2 - c1 with 1,1,1 = 1.7320508075688772;
-        assertEquals(c1.getDistance(c2),1.7320508075688772, epsilon);
+        assertEquals(c1.getDistance(c2),c1GetDistanceC2, epsilon);
         assertEquals(c1.getDistance(c1), 0, epsilon);
     }
 
