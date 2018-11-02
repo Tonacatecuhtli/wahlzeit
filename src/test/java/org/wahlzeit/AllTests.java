@@ -25,7 +25,6 @@ import org.junit.runners.Suite.SuiteClasses;
 
 import org.wahlzeit.handlers.TellFriendTest;
 import org.wahlzeit.model.*;
-import org.wahlzeit.model.persistence.AbstractAdapterTest;
 import org.wahlzeit.model.persistence.DatastoreAdapterTest;
 import org.wahlzeit.services.EmailServiceTestSuite;
 import org.wahlzeit.services.LogBuilderTest;
@@ -36,7 +35,6 @@ import org.wahlzeit.utils.VersionTest;
 @SuiteClasses({
         // model
         TellFriendTest.class,
-        AbstractAdapterTest.class,
         DatastoreAdapterTest.class,
         AccessRightsTest.class,
         CoordinateTest.class,
