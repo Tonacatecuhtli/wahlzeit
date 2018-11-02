@@ -22,6 +22,8 @@ package org.wahlzeit.services;
 
 import junit.framework.TestCase;
 
+import javax.mail.internet.InternetAddress;
+
 /**
  * Test cases for the EmailAddress class.
  */
@@ -64,6 +66,15 @@ public class EmailAddressTest extends TestCase {
 	 */
 	public void testEmptyEmailAddress() {
 		assertFalse(EmailAddress.EMPTY.isValid());
+	}
+
+	/**
+	 *
+	 */
+	public void testEmailAsInternetAddress() {
+		EmailAddress email = EmailAddress.getFromString("bingo@bongo.com");
+		InternetAddress internetAddress = email.asInternetAddress();
+		assertEquals(email.value, internetAddress.getAddress());
 	}
 
 }
