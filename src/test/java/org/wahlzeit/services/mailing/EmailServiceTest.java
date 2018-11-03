@@ -22,6 +22,7 @@ package org.wahlzeit.services.mailing;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+import org.wahlzeit.main.ServiceMain;
 import org.wahlzeit.services.EmailAddress;
 
 import static org.junit.Assert.assertFalse;
@@ -56,5 +57,16 @@ public class EmailServiceTest {
 		} catch (Exception ex) {
 			Assert.fail("Silent mode does not allow exceptions");
 		}
+	}
+
+	@Test
+	public void testInitDefaultService() {
+		boolean isInProduction = ServiceMain.getInstance().isInProduction();
+		if(isInProduction){
+			assertTrue(emailService instanceof SmtpEmailService);
+		} else {
+			assertTrue(emailService instanceof LoggingEmailService);
+		}
+
 	}
 }
