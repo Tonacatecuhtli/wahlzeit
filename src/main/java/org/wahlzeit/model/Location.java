@@ -36,7 +36,7 @@ public class Location {
     /**
      * create a location and coordinate by supplying coordinates.
      */
-    public Location(double x, double y, double z){
+    public Location(double x, double y, double z) {
         this.coordinate = new Coordinate(x, y, z);
     }
 

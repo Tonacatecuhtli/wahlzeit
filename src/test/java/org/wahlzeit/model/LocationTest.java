@@ -27,16 +27,34 @@ import static org.junit.Assert.*;
 
 public class LocationTest {
 
-    private Location location = new Location();
+    private Location location;
 
     @Before
-    public void setUp () {
-        Coordinate a = new Coordinate(3,3,3);
-        location.setCoordinate(a);
+    public void setUp() {
+        this.location = new Location(5,4,3);
     }
 
     @Test
-    public void getCoordinatesTest () {
+    public void testSetCoordinate() {
+        Coordinate coordinate = new Coordinate(3,3,3);
+
+        location.setCoordinate(coordinate);
+        assertEquals(coordinate, location.getCoordinate());
+    }
+
+    @Test
+    public void testConstructorWithCoordinate() {
+        Coordinate coordinate = new Coordinate(3,3,3);
+        new Location(coordinate);
+    }
+
+    @Test
+    public void testConstructorWithCoordinates() {
+        new Location(1,2,3);
+    }
+
+    @Test
+    public void getCoordinatesTest() {
         Coordinate locationCoordinate = location.getCoordinate();
         assertTrue(locationCoordinate.getClass().getName() == Coordinate.class.getName());
     }

@@ -29,7 +29,7 @@ public class Coordinate {
     /**
      *
      */
-    public Coordinate (double x, double y, double z) {
+    public Coordinate(double x, double y, double z) {
         this.x = x;
         this.y = y;
         this.z = z;
@@ -38,7 +38,7 @@ public class Coordinate {
     /**
      *
      */
-    protected double getDistance (Coordinate other) {
+    protected double getDistance(Coordinate other) {
         double xDif = Math.pow((other.x - this.x), 2);
         double yDif = Math.pow((other.y - this.y), 2);
         double zDif = Math.pow((other.z - this.z), 2);
@@ -67,7 +67,7 @@ public class Coordinate {
     /**
      *
      */
-    protected boolean isEqual (Coordinate other) {
+    protected boolean isEqual(Coordinate other) {
         return this.x == other.x && this.y == other.y && this.z == other.z;
     }
 }
