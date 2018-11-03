@@ -24,7 +24,21 @@ public class Location {
     /**
      *
      */
-    protected Coordinate coordinate = null;
+    protected Coordinate coordinate;
+
+    /**
+     * create a location directly with a coordinate
+     */
+    public Location(Coordinate coordinate){
+        this.coordinate = coordinate;
+    }
+
+    /**
+     * create a location and coordinate by supplying coordinates.
+     */
+    public Location(double x, double y, double z){
+        this.coordinate = new Coordinate(x, y, z);
+    }
 
     /**
      *
