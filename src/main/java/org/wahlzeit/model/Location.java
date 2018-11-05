@@ -41,14 +41,14 @@ public class Location {
     }
 
     /**
-     *
+     * @methodtype get
      */
     public Coordinate getCoordinate() {
         return coordinate;
     }
 
     /**
-     *
+     * @methodtype set
      */
     public void setCoordinate(Coordinate coordinate) {
         this.coordinate = coordinate;

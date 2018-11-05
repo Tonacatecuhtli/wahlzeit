@@ -37,6 +37,7 @@ public class Coordinate {
 
     /**
      * calculate the cartesian distance between this and another Coordinate
+     * @methodproperty primitive
      */
     protected double getDistance(Coordinate other) {
         double xDif = Math.pow((other.x - this.x), 2);
