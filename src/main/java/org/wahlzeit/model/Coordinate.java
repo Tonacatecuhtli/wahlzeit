@@ -36,7 +36,7 @@ public class Coordinate {
     }
 
     /**
-     *
+     * calculate the cartesian distance between this and another Coordinate
      */
     protected double getDistance(Coordinate other) {
         double xDif = Math.pow((other.x - this.x), 2);
@@ -47,7 +47,7 @@ public class Coordinate {
     }
 
     /**
-     *
+     *	@methodtype comparision
      */
     @Override
     public boolean equals(Object obj) {
@@ -65,7 +65,7 @@ public class Coordinate {
     }
 
     /**
-     *
+     * @methodtype comparision
      */
     protected boolean isEqual(Coordinate other) {
         return this.x == other.x && this.y == other.y && this.z == other.z;
