@@ -33,6 +33,7 @@ import org.wahlzeit.services.Language;
 import org.wahlzeit.services.ObjectManager;
 
 import java.util.Map;
+import java.util.logging.Logger;
 
 /**
  * A photo represents a user-provided (uploaded) photo.
@@ -136,10 +137,14 @@ public class Photo extends DataObject {
 	@Parent
 	Key parent = ObjectManager.applicationRootKey;
 
+	private static final Logger log = Logger.getLogger(Photo.class.getName());
+
+
 	/**
 	 *
 	 */
 	public Photo() {
+		log.info("Default Photo constructor");
 		id = PhotoId.getNextId();
 		incWriteCount();
 	}
@@ -148,6 +153,7 @@ public class Photo extends DataObject {
 	 * @methodtype constructor
 	 */
 	public Photo(PhotoId myId) {
+		log.info("Id Photo constructor");
 		id = myId;
 
 		incWriteCount();
