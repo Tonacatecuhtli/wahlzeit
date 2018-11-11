@@ -144,7 +144,6 @@ public class Photo extends DataObject {
 	 *
 	 */
 	public Photo() {
-		log.info("Default Photo constructor");
 		id = PhotoId.getNextId();
 		incWriteCount();
 	}
@@ -153,7 +152,6 @@ public class Photo extends DataObject {
 	 * @methodtype constructor
 	 */
 	public Photo(PhotoId myId) {
-		log.info("Id Photo constructor");
 		id = myId;
 
 		incWriteCount();
