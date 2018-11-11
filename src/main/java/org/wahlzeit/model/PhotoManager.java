@@ -23,6 +23,7 @@ package org.wahlzeit.model;
 import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
+
 import org.wahlzeit.model.persistence.ImageStorage;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.ObjectManager;
@@ -72,7 +73,7 @@ public class PhotoManager extends ObjectManager {
 	/**
 	 *
 	 */
-	public static final PhotoManager getInstance() {
+	public static PhotoManager getInstance() {
 		return instance;
 	}
 
