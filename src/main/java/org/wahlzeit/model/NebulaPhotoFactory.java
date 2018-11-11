@@ -29,6 +29,8 @@ public class NebulaPhotoFactory extends PhotoFactory {
      * Public singleton access method.
      */
     public static synchronized NebulaPhotoFactory getInstance() {
+        log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
         if (instance == null) {
             log.config(LogBuilder.createSystemMessage().addAction("setting generic NebulaPhotoFactory").toString());
             setInstance(new NebulaPhotoFactory());
@@ -36,6 +38,17 @@ public class NebulaPhotoFactory extends PhotoFactory {
 
         return instance;
     }
+    /**
+     * Method to set the singleton instance of NebulaPhotoFactory.
+     */
+    protected static synchronized void setInstance(NebulaPhotoFactory nebulaPhotoFactory) {
+        if (instance != null) {
+            throw new IllegalStateException("attempt to initalize PhotoFactory twice");
+        }
+
+        instance = nebulaPhotoFactory;
+    }
+
 
     /**
      * @methodtype factory
