@@ -6,7 +6,7 @@ public class NebulaPhoto extends Photo {
 
     private static final Logger log = Logger.getLogger(NebulaPhoto.class.getName());
 
-    protected int magnitude;
+    private double magnitude;
 
     /**
      *
@@ -30,8 +30,8 @@ public class NebulaPhoto extends Photo {
     /**
      * @methodtype constructor
      */
-    public NebulaPhoto(PhotoId myId, int magnitude) {
-        log.info("Id NebulaPhoto constructor");
+    public NebulaPhoto(PhotoId myId, double magnitude) {
+        log.info("Id/ magnitude NebulaPhoto constructor");
         id = myId;
         magnitude = magnitude;
         incWriteCount();
