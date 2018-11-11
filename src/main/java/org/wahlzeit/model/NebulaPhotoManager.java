@@ -68,15 +68,15 @@ public class NebulaPhotoManager extends PhotoManager {
         for (NebulaPhoto photo : existingPhotos) {
             if (!doHasPhoto(photo.getId())) {
                 log.config(LogBuilder.createSystemMessage().
-                        addParameter("Load Photo with ID", photo.getIdAsString()).toString());
+                        addParameter("Load NebulaPhoto with ID", photo.getIdAsString()).toString());
                 loadScaledImages(photo);
                 doAddPhoto(photo);
             } else {
                 log.config(LogBuilder.createSystemMessage().
-                        addParameter("Already loaded Photo", photo.getIdAsString()).toString());
+                        addParameter("Already loaded NebulaPhoto", photo.getIdAsString()).toString());
             }
         }
 
-        log.info(LogBuilder.createSystemMessage().addMessage("All photos loaded.").toString());
+        log.info(LogBuilder.createSystemMessage().addMessage("All nebula photos loaded.").toString());
     }
 }
