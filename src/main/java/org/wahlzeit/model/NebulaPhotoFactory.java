@@ -20,6 +20,8 @@ public class NebulaPhotoFactory extends PhotoFactory {
      * Hidden singleton instance; needs to be initialized from the outside.
      */
     public static void initialize() {
+        log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
         getInstance(); // drops result due to getInstance() side-effects
     }
 
@@ -33,5 +35,23 @@ public class NebulaPhotoFactory extends PhotoFactory {
         }
 
         return instance;
+    }
+
+    /**
+     * @methodtype factory
+     */
+    public NebulaPhoto createPhoto() {
+        log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
+        return new NebulaPhoto();
+    }
+
+    /**
+     * Creates a new photo with the specified id
+     */
+    public NebulaPhoto createPhoto(PhotoId id) {
+        log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
+        return new NebulaPhoto(id);
     }
 }

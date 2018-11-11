@@ -76,6 +76,8 @@ public class PhotoFactory {
 	 * @methodtype factory
 	 */
 	public Photo createPhoto() {
+		log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
 		return new Photo();
 	}
 
@@ -83,6 +85,8 @@ public class PhotoFactory {
 	 * Creates a new photo with the specified id
 	 */
 	public Photo createPhoto(PhotoId id) {
+		log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
 		return new Photo(id);
 	}
 

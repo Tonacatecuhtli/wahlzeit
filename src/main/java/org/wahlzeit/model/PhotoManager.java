@@ -74,6 +74,7 @@ public class PhotoManager extends ObjectManager {
 	 *
 	 */
 	public static PhotoManager getInstance() {
+		log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
 		return instance;
 	}
 
@@ -154,6 +155,8 @@ public class PhotoManager extends ObjectManager {
 	 * Load all persisted photos. Executed when Wahlzeit is restarted.
 	 */
 	public void loadPhotos() {
+		log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
 		Collection<Photo> existingPhotos = ObjectifyService.run(new Work<Collection<Photo>>() {
 			@Override
 			public Collection<Photo> run() {
@@ -338,6 +341,8 @@ public class PhotoManager extends ObjectManager {
 	 *
 	 */
 	public Photo createPhoto(String filename, Image uploadedImage) throws Exception {
+		log.info(new Object(){}.getClass().getName() + " " + new Object(){}.getClass().getEnclosingMethod().getName());
+
 		PhotoId id = PhotoId.getNextId();
 		Photo result = PhotoUtil.createPhoto(filename, id, uploadedImage);
 		addPhoto(result);
