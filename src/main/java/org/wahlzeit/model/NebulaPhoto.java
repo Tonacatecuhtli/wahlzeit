@@ -12,7 +12,7 @@ public class NebulaPhoto extends Photo {
      *
      */
     public NebulaPhoto() {
-        log.info("Default NebulaPhoto constructor");
+        // log.info("Default NebulaPhoto constructor");
         id = PhotoId.getNextId();
         incWriteCount();
     }
@@ -21,9 +21,8 @@ public class NebulaPhoto extends Photo {
      * @methodtype constructor
      */
     public NebulaPhoto(PhotoId myId) {
-        log.info("Id NebulaPhoto constructor");
+        // log.info("Id NebulaPhoto constructor");
         id = myId;
-
         incWriteCount();
     }
 
@@ -31,7 +30,7 @@ public class NebulaPhoto extends Photo {
      * @methodtype constructor
      */
     public NebulaPhoto(PhotoId myId, double magnitude) {
-        log.info("Id/ magnitude NebulaPhoto constructor");
+        // log.info("Id/ magnitude NebulaPhoto constructor");
         id = myId;
         magnitude = magnitude;
         incWriteCount();
