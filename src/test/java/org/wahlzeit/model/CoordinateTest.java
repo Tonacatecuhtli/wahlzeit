@@ -93,6 +93,12 @@ public class CoordinateTest {
         assertEquals(sc1.getActualArcLength(sc3), actualArcLengthSc1Sc3, epsilon);
     }
 
+    @Test
+    public void ensureInterchangeability(){
+        assertEquals(cc1.getCentralAngle(sc2), centralAngleSc1Sc2, epsilon);
+        assertEquals(sc1.getCentralAngle(cc2), centralAngleSc1Sc2, epsilon);
+    }
+
     @After
     public void tearDown () {
         // remove references so that garbage collection will delete the objects.
