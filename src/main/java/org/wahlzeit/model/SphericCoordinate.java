@@ -103,11 +103,20 @@ public class SphericCoordinate implements Coordinate {
     }
 
     /**
+     * @param other the SpericalCoordinate to compare to
+     * @methodtype comparision
+     */
+    protected boolean isEqual(SphericCoordinate other) {
+        return this.latitude == other.latitude && this.longitude == other.longitude && this.radius == other.radius;
+    }
+
+    /**
      * @param coordinate
      * @methodtype comparision
      */
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        return false;
+        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
+        return isEqual(sphericCoordinate);
     }
 }

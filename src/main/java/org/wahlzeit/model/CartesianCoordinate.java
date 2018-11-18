@@ -124,6 +124,7 @@ public class CartesianCoordinate implements Coordinate {
      */
     @Override
     public boolean isEqual(Coordinate coordinate) {
-        return false;
+        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
+        return isEqual(cartesianCoordinate);
     }
 }
