@@ -34,12 +34,18 @@ public class SphericCoordinate implements Coordinate {
      */
     private double radius;
 
+    public SphericCoordinate(double latitude, double longitude, double radius){
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.radius = radius;
+    }
+
     /**
      * @methodtype conversion
      */
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
-        return null;
+        return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
     }
 
     /**
@@ -56,7 +62,7 @@ public class SphericCoordinate implements Coordinate {
      */
     @Override
     public SphericCoordinate asSphericCoordinate() {
-       return null;
+       return this;
     }
 
     /**
@@ -67,7 +73,8 @@ public class SphericCoordinate implements Coordinate {
     public double getCentralAngle(Coordinate coordinate) {
         // todo split into assertion and primitive methods
 
-        return 0;
+
+        return doGetCentralAngle(this, coordinate);
     }
 
     protected static double doGetCentralAngle(Coordinate c1, Coordinate c2){

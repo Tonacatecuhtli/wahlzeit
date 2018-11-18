@@ -77,7 +77,7 @@ public class CartesianCoordinate implements Coordinate {
      */
     @Override
     public CartesianCoordinate asCartesianCoordinate() {
-        return null;
+        return this;
     }
 
     /**
@@ -86,7 +86,19 @@ public class CartesianCoordinate implements Coordinate {
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
-        return 0;
+        return doGetCartesianDistance(this, coordinate);
+    }
+
+    /**
+     *
+     * @param c1 Coordinate 1
+     * @param c2 Coordinate 2
+     * @return the cartesian distance between to coordinates
+     */
+    protected static double doGetCartesianDistance(Coordinate c1, Coordinate c2){
+        CartesianCoordinate c1c = c1.asCartesianCoordinate();
+        CartesianCoordinate c2c = c2.asCartesianCoordinate();
+        return c1c.getDistance(c2c);
     }
 
     /**
@@ -94,7 +106,7 @@ public class CartesianCoordinate implements Coordinate {
      */
     @Override
     public SphericCoordinate asSphericCoordinate() {
-        return null;
+        return new SphericCoordinate(this.x, this.y, this.z);
     }
 
     /**
@@ -103,7 +115,7 @@ public class CartesianCoordinate implements Coordinate {
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
-        return 0;
+        return SphericCoordinate.doGetCentralAngle(this, coordinate);
     }
 
     /**
