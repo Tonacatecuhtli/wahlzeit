@@ -27,8 +27,10 @@ import static org.junit.Assert.*;
 
 public class CoordinateTest {
 
-    private CartesianCoordinate c1;
-    private CartesianCoordinate c2;
+    private CartesianCoordinate cc1;
+    private CartesianCoordinate cc2;
+    private SphericCoordinate sc1;
+    private SphericCoordinate sc2;
     private double c1GetDistanceC2;
 
     // delta of which assertEquals double, test variables can be different
@@ -36,29 +38,34 @@ public class CoordinateTest {
 
     @Before
     public void setUp () {
-        c1 = new CartesianCoordinate(1,1,1);
-        c2 = new CartesianCoordinate(2,2,2);
-        // c2 with 2,2,2 - c1 with 1,1,1 = sqrt(3)
+        cc1 = new CartesianCoordinate(1,1,1);
+        cc2 = new CartesianCoordinate(2,2,2);
+        // cc2 with 2,2,2 - cc1 with 1,1,1 = sqrt(3)
         c1GetDistanceC2 = Math.sqrt(3);
+
+        sc1 = new SphericCoordinate(1,1,1);
+        sc2 = new SphericCoordinate(2,2,2);
     }
 
     @Test
     public void testIsEqual() {
-        assertTrue(c1.isEqual(c1));
-        assertFalse(c1.isEqual(c2));
+        assertTrue(cc1.isEqual(cc1));
+        assertFalse(cc1.isEqual(cc2));
+        assertTrue(cc1.isEqual(sc1));
+        assertFalse(sc1.isEqual(sc2));
     }
 
     @Test
     public void testDistance() {
-        assertEquals(c1.getDistance(c2),c1GetDistanceC2, epsilon);
-        assertEquals(c1.getDistance(c1), 0, epsilon);
+        assertEquals(cc1.getDistance(cc2),c1GetDistanceC2, epsilon);
+        assertEquals(cc1.getDistance(cc1), 0, epsilon);
     }
 
     @After
     public void tearDown () {
         // remove references so that garbage collection will delete the objects.
-        c1 = null;
-        c2 = null;
+        cc1 = null;
+        cc2 = null;
     }
 
 }
