@@ -36,16 +36,16 @@ public class LocationTest {
 
     @Test
     public void testSetCoordinate() {
-        Coordinate coordinate = new Coordinate(3,3,3);
+        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3,3,3);
 
-        location.setCoordinate(coordinate);
-        assertEquals(coordinate, location.getCoordinate());
+        location.setCoordinate(cartesianCoordinate);
+        assertEquals(cartesianCoordinate, location.getCoordinate());
     }
 
     @Test
     public void testConstructorWithCoordinate() {
-        Coordinate coordinate = new Coordinate(3,3,3);
-        new Location(coordinate);
+        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3,3,3);
+        new Location(cartesianCoordinate);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class LocationTest {
 
     @Test
     public void getCoordinatesTest() {
-        Coordinate locationCoordinate = location.getCoordinate();
-        assertTrue(locationCoordinate.getClass().getName() == Coordinate.class.getName());
+        CartesianCoordinate locationCartesianCoordinate = location.getCoordinate();
+        assertTrue(locationCartesianCoordinate.getClass().getName() == CartesianCoordinate.class.getName());
     }
 }

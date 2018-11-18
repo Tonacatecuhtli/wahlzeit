@@ -25,10 +25,10 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CoordinateTest {
+public class CartesianCoordinateTest {
 
-    private Coordinate c1;
-    private Coordinate c2;
+    private CartesianCoordinate c1;
+    private CartesianCoordinate c2;
     private double c1GetDistanceC2;
 
     // delta of which assertEquals double, test variables can be different
@@ -36,8 +36,8 @@ public class CoordinateTest {
 
     @Before
     public void setUp () {
-        c1 = new Coordinate(1,1,1);
-        c2 = new Coordinate(2,2,2);
+        c1 = new CartesianCoordinate(1,1,1);
+        c2 = new CartesianCoordinate(2,2,2);
         // c2 with 2,2,2 - c1 with 1,1,1 = sqrt(3)
         c1GetDistanceC2 = Math.sqrt(3);
     }
