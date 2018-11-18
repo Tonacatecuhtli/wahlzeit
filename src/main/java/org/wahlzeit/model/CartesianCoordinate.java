@@ -96,9 +96,9 @@ public class CartesianCoordinate implements Coordinate {
      * @return the cartesian distance between to coordinates
      */
     protected static double doGetCartesianDistance(Coordinate c1, Coordinate c2){
-        CartesianCoordinate c1c = c1.asCartesianCoordinate();
-        CartesianCoordinate c2c = c2.asCartesianCoordinate();
-        return c1c.getDistance(c2c);
+        CartesianCoordinate cc1 = c1.asCartesianCoordinate();
+        CartesianCoordinate cc2 = c2.asCartesianCoordinate();
+        return cc1.getDistance(cc2);
     }
 
     /**

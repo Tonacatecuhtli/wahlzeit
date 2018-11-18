@@ -79,7 +79,7 @@ public class SphericCoordinate implements Coordinate {
 
     protected static double doGetCentralAngle(Coordinate c1, Coordinate c2){
         SphericCoordinate c1s = c1.asSphericCoordinate();
-        SphericCoordinate c2s = c1.asSphericCoordinate();
+        SphericCoordinate c2s = c2.asSphericCoordinate();
 
         double centralAngle = Math.acos(
             Math.sin(c1s.latitude) * Math.sin(c2s.latitude)
@@ -96,10 +96,10 @@ public class SphericCoordinate implements Coordinate {
      * @param c2 Coordinate 2
      * @return the actual arc length d on a sphere of radius r
      */
-    public double getActualArcLength(Coordinate c1, Coordinate c2){
-        double centralAngle = doGetCentralAngle(c1, c2);
-        SphericCoordinate c1s = c1.asSphericCoordinate();
-        return c1s.radius * centralAngle;
+    public double getActualArcLength(Coordinate coordinate){
+        double centralAngle = doGetCentralAngle(this, coordinate);
+        SphericCoordinate sc = coordinate.asSphericCoordinate();
+        return sc.radius * centralAngle;
     }
 
     /**

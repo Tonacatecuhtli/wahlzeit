@@ -23,15 +23,26 @@ package org.wahlzeit.model;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.logging.Logger;
+
 import static org.junit.Assert.*;
 
 public class CoordinateTest {
+
+    private static final Logger log = Logger.getLogger(CoordinateTest.class.getName());
+
 
     private CartesianCoordinate cc1;
     private CartesianCoordinate cc2;
     private SphericCoordinate sc1;
     private SphericCoordinate sc2;
-    private double c1GetDistanceC2;
+    private SphericCoordinate sc3;
+
+
+    private double cartesianDistanceCc1Cc2;
+    private double centralAngleSc1Sc2;
+    private double actualArcLengthSc1Sc3;
 
     // delta of which assertEquals double, test variables can be different
     private static final double epsilon = 1e-10;
@@ -41,10 +52,15 @@ public class CoordinateTest {
         cc1 = new CartesianCoordinate(1,1,1);
         cc2 = new CartesianCoordinate(2,2,2);
         // cc2 with 2,2,2 - cc1 with 1,1,1 = sqrt(3)
-        c1GetDistanceC2 = Math.sqrt(3);
+        cartesianDistanceCc1Cc2 = Math.sqrt(3);
 
         sc1 = new SphericCoordinate(1,1,1);
         sc2 = new SphericCoordinate(2,2,2);
+        sc3 = new SphericCoordinate(3,4,5);
+
+        centralAngleSc1Sc2 = 0.8715212348676055;
+        actualArcLengthSc1Sc3 = 4.327295325724265;
+
     }
 
     @Test
@@ -57,8 +73,18 @@ public class CoordinateTest {
 
     @Test
     public void testDistance() {
-        assertEquals(cc1.getDistance(cc2),c1GetDistanceC2, epsilon);
+        assertEquals(cc1.getDistance(cc2), cartesianDistanceCc1Cc2, epsilon);
         assertEquals(cc1.getDistance(cc1), 0, epsilon);
+    }
+
+    @Test
+    public void testCentralAngle(){
+        assertEquals(sc1.getCentralAngle(sc2), centralAngleSc1Sc2, epsilon);
+    }
+
+    @Test
+    public void testActualArcLength(){
+        assertEquals(sc1.getActualArcLength(sc3), actualArcLengthSc1Sc3, epsilon);
     }
 
     @After
