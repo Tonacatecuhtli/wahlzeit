@@ -35,9 +35,23 @@ public class SphericCoordinate implements Coordinate {
     private double radius;
 
     public SphericCoordinate(double latitude, double longitude, double radius){
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.radius = radius;
+        if(isValid(latitude) && isValid(longitude) && isValid(radius)){
+            this.latitude = latitude;
+            this.longitude = longitude;
+            this.radius = radius;
+        } else {
+            throw new IllegalArgumentException("All parameters must be >= 0");
+        }
+    }
+
+    /**
+     * @methodType boolean query
+     * @methodproperty primitive
+     * @param input one of the constructor arguments
+     * @return boolean
+     */
+    private boolean isValid (double input) {
+        return input >= 0;
     }
 
     /**
@@ -92,8 +106,7 @@ public class SphericCoordinate implements Coordinate {
 
     /**
      *
-     * @param c1 Coordinate 1
-     * @param c2 Coordinate 2
+     * @param coordinate Coordinate
      * @return the actual arc length d on a sphere of radius r
      */
     public double getActualArcLength(Coordinate coordinate){
@@ -103,7 +116,7 @@ public class SphericCoordinate implements Coordinate {
     }
 
     /**
-     * @param other the SpericalCoordinate to compare to
+     * @param other the SphericalCoordinate to compare to
      * @methodtype comparision
      */
     protected boolean isEqual(SphericCoordinate other) {

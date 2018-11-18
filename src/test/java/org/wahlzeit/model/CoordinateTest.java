@@ -63,6 +63,12 @@ public class CoordinateTest {
 
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void invalidConstructionTest(){
+        new SphericCoordinate(-1, -1,-1);
+        new CartesianCoordinate( -1, -1, -1);
+    }
+
     @Test
     public void testIsEqual() {
         assertTrue(cc1.isEqual(cc1));

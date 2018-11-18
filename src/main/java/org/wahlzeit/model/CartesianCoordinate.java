@@ -30,9 +30,23 @@ public class CartesianCoordinate implements Coordinate {
      *
      */
     public CartesianCoordinate(double x, double y, double z) {
-        this.x = x;
-        this.y = y;
-        this.z = z;
+        if(isValid(x) && isValid(y) && isValid(z)){
+            this.x = x;
+            this.y = y;
+            this.z = z;
+        } else {
+            throw new IllegalArgumentException("All parameters must be >= 0");
+        }
+    }
+
+    /**
+     * @methodType boolean query
+     * @methodproperty primitive
+     * @param input one of the constructor arguments
+     * @return boolean
+     */
+    private boolean isValid (double input) {
+        return input >= 0;
     }
 
     /**
