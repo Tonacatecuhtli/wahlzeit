@@ -25,7 +25,7 @@ import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-public class CartesianCoordinateTest {
+public class CoordinateTest {
 
     private CartesianCoordinate c1;
     private CartesianCoordinate c2;
