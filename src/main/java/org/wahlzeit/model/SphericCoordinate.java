@@ -54,7 +54,7 @@ public class SphericCoordinate implements Coordinate {
      */
     @Override
     public double getCartesianDistance(Coordinate coordinate) {
-        return 0;
+        return CartesianCoordinate.doGetCartesianDistance(this, coordinate);
     }
 
     /**
