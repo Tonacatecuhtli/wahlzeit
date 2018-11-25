@@ -20,7 +20,7 @@
 
 package org.wahlzeit.model;
 
-public class CartesianCoordinate implements Coordinate {
+public class CartesianCoordinate extends AbstractCoordinate{
     /**
      *
      */
@@ -40,16 +40,6 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
-     * @methodType boolean query
-     * @methodproperty primitive
-     * @param input one of the constructor arguments
-     * @return boolean
-     */
-    private boolean isValid (double input) {
-        return input >= 0;
-    }
-
-    /**
      * calculate the cartesian distance between this and another CartesianCoordinate
      * @methodproperty primitive
      */
@@ -62,35 +52,11 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
-     *	@methodtype comparision
-     */
-    @Override
-    public boolean equals(Object obj) {
-        if (obj == null) {
-            return false;
-        }
-
-        // check if it's a assignable
-        if (!CartesianCoordinate.class.isAssignableFrom(obj.getClass())) {
-            return false;
-        }
-
-        final CartesianCoordinate other = (CartesianCoordinate) obj;
-        return this.isEqual(other);
-    }
-
-    /**
-     * @methodtype comparision
-     */
-    protected boolean isEqual(CartesianCoordinate other) {
-        return this.x == other.x && this.y == other.y && this.z == other.z;
-    }
-
-    /**
      * @methodtype conversion
+     * @methodproterty primitive, hook
      */
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    protected CartesianCoordinate doAsCartesianCoordinate() {
         return this;
     }
 
@@ -117,9 +83,10 @@ public class CartesianCoordinate implements Coordinate {
 
     /**
      * @methodtype conversion
+     * @methodproterty primitive, hook
      */
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    protected SphericCoordinate doAsSphericCoordinate() {
         return new SphericCoordinate(this.x, this.y, this.z);
     }
 
@@ -133,12 +100,31 @@ public class CartesianCoordinate implements Coordinate {
     }
 
     /**
-     * @param coordinate
-     * @methodtype comparision
+     *	@methodtype comparision
      */
     @Override
-    public boolean isEqual(Coordinate coordinate) {
+    public boolean equals(Object obj) {
+        if (obj == null) {
+            return false;
+        }
+
+        // check if it's a assignable
+        if (!CartesianCoordinate.class.isAssignableFrom(obj.getClass())) {
+            return false;
+        }
+
+        final CartesianCoordinate other = (CartesianCoordinate) obj;
+        return this.isEqual(other);
+    }
+
+    /**
+     * @param coordinate
+     * @methodtype conversion
+     * @methodproterty primitive, hook
+     */
+    @Override
+    protected boolean doIsEqual(Coordinate coordinate) {
         CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        return isEqual(cartesianCoordinate);
+        return  this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
     }
 }

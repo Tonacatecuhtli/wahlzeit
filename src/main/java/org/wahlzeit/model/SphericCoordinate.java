@@ -20,7 +20,7 @@
 
 package org.wahlzeit.model;
 
-public class SphericCoordinate implements Coordinate {
+public class SphericCoordinate extends AbstractCoordinate {
     /**
      * latitude = phi;
      */
@@ -34,8 +34,8 @@ public class SphericCoordinate implements Coordinate {
      */
     private double radius;
 
-    public SphericCoordinate(double latitude, double longitude, double radius){
-        if(isValid(latitude) && isValid(longitude) && isValid(radius)){
+    public SphericCoordinate(double latitude, double longitude, double radius) {
+        if (isValid(latitude) && isValid(longitude) && isValid(radius)) {
             this.latitude = latitude;
             this.longitude = longitude;
             this.radius = radius;
@@ -45,20 +45,11 @@ public class SphericCoordinate implements Coordinate {
     }
 
     /**
-     * @methodType boolean query
-     * @methodproperty primitive
-     * @param input one of the constructor arguments
-     * @return boolean
-     */
-    private boolean isValid (double input) {
-        return input >= 0;
-    }
-
-    /**
      * @methodtype conversion
+     * @methodproterty primitive, hook
      */
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    protected CartesianCoordinate doAsCartesianCoordinate() {
         return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
     }
 
@@ -73,9 +64,10 @@ public class SphericCoordinate implements Coordinate {
 
     /**
      * @methodtype conversion
+     * @methodproterty primitive, hook
      */
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    protected SphericCoordinate doAsSphericCoordinate() {
         return this;
     }
 
@@ -85,51 +77,40 @@ public class SphericCoordinate implements Coordinate {
      */
     @Override
     public double getCentralAngle(Coordinate coordinate) {
-        // todo split into assertion and primitive methods
-
-
         return doGetCentralAngle(this, coordinate);
     }
 
-    protected static double doGetCentralAngle(Coordinate c1, Coordinate c2){
+    protected static double doGetCentralAngle(Coordinate c1, Coordinate c2) {
         SphericCoordinate c1s = c1.asSphericCoordinate();
         SphericCoordinate c2s = c2.asSphericCoordinate();
 
         double centralAngle = Math.acos(
                 Math.sin(c1s.latitude) * Math.sin(c2s.latitude)
                         +
-                        Math.cos(c1s.latitude) * Math.cos(c2s.latitude) * Math.cos(Math.abs(c2s.longitude-c1s.longitude))
+                        Math.cos(c1s.latitude) * Math.cos(c2s.latitude) * Math.cos(Math.abs(c2s.longitude - c1s.longitude))
         );
 
         return centralAngle;
     }
 
     /**
-     *
      * @param coordinate Coordinate
      * @return the actual arc length d on a sphere of radius r
      */
-    public double getActualArcLength(Coordinate coordinate){
+    public double getActualArcLength(Coordinate coordinate) {
         double centralAngle = doGetCentralAngle(this, coordinate);
         SphericCoordinate sc = coordinate.asSphericCoordinate();
         return sc.radius * centralAngle;
     }
 
     /**
-     * @param other the SphericalCoordinate to compare to
-     * @methodtype comparision
-     */
-    protected boolean isEqual(SphericCoordinate other) {
-        return this.latitude == other.latitude && this.longitude == other.longitude && this.radius == other.radius;
-    }
-
-    /**
      * @param coordinate
-     * @methodtype comparision
+     * @methodtype conversion
+     * @methodproterty primitive, hook
      */
     @Override
-    public boolean isEqual(Coordinate coordinate) {
+    protected boolean doIsEqual(Coordinate coordinate) {
         SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return isEqual(sphericCoordinate);
+        return this.latitude == sphericCoordinate.latitude && this.longitude == sphericCoordinate.longitude && this.radius == sphericCoordinate.radius;
     }
 }
