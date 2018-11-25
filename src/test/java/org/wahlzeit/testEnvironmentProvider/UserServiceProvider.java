@@ -21,6 +21,10 @@ public class UserServiceProvider extends ExternalResource {
 
 	@Override
 	protected void after() {
-		super.after();
+		try {
+			super.after();
+		} catch (Error e){
+			// do nothing
+		}
 	}
 }
