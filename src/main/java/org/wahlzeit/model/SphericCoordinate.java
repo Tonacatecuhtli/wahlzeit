@@ -76,7 +76,7 @@ public class SphericCoordinate implements Coordinate {
      */
     @Override
     public SphericCoordinate asSphericCoordinate() {
-       return this;
+        return this;
     }
 
     /**
@@ -88,15 +88,17 @@ public class SphericCoordinate implements Coordinate {
         // todo split into assertion and primitive methods
 
 
-        return doGetCentralAngle(coordinate);
+        return doGetCentralAngle(this, coordinate);
     }
 
-    public double doGetCentralAngle(Coordinate other){
-        SphericCoordinate sc = other.asSphericCoordinate();
+    protected static double doGetCentralAngle(Coordinate c1, Coordinate c2){
+        SphericCoordinate c1s = c1.asSphericCoordinate();
+        SphericCoordinate c2s = c2.asSphericCoordinate();
+
         double centralAngle = Math.acos(
-            Math.sin(this.latitude) * Math.sin(sc.latitude)
-            +
-            Math.cos(this.latitude) * Math.cos(sc.latitude) * Math.cos(Math.abs(sc.longitude-this.longitude))
+                Math.sin(c1s.latitude) * Math.sin(c2s.latitude)
+                        +
+                        Math.cos(c1s.latitude) * Math.cos(c2s.latitude) * Math.cos(Math.abs(c2s.longitude-c1s.longitude))
         );
 
         return centralAngle;
@@ -112,7 +114,7 @@ public class SphericCoordinate implements Coordinate {
         SphericCoordinate sc = coordinate.asSphericCoordinate();
         return sc.radius * centralAngle;
     }
-k
+
     /**
      * @param other the SphericalCoordinate to compare to
      * @methodtype comparision

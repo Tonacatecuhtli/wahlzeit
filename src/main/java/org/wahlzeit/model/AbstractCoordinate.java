@@ -31,9 +31,8 @@ public abstract class AbstractCoordinate implements Coordinate{
      *  @param coordinate
      */
     public double getCartesianDistance(Coordinate coordinate){
-        CartesianCoordinate cc1 = this.asCartesianCoordinate();
-        CartesianCoordinate cc2 = coordinate.asCartesianCoordinate();
-        return cc1.getDistance(cc2);
+
+        return 0;
     }
 
     /**
@@ -41,8 +40,8 @@ public abstract class AbstractCoordinate implements Coordinate{
      *	@methodtype getter
      */
     public double getCentralAngle(Coordinate coordinate){
-        SphericCoordinate c1s = this.asSphericCoordinate();
-        return c1s.doGetCentralAngle(coordinate);
+
+        return 0;
     }
 
     protected abstract double doGetCentralAngle(Coordinate coordinate);
@@ -53,6 +52,7 @@ public abstract class AbstractCoordinate implements Coordinate{
      */
     public boolean isEqual(Coordinate coordinate){
 
+        return false;
     }
 
     /**
