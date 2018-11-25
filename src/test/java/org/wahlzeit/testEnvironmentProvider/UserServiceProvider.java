@@ -23,7 +23,7 @@ public class UserServiceProvider extends ExternalResource {
 	protected void after() {
 		try {
 			super.after();
-		} catch (Error e){
+		} catch (Throwable e){
 			// do nothing
 		}
 	}

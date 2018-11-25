@@ -1,7 +1,1 @@
 language: java
-install: true
-jdk:
-  - openjdk8
-  - oraclejdk11
-script:
-  - ./gradlew test
