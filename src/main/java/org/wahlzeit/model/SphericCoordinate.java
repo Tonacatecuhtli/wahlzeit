@@ -88,17 +88,15 @@ public class SphericCoordinate implements Coordinate {
         // todo split into assertion and primitive methods
 
 
-        return doGetCentralAngle(this, coordinate);
+        return doGetCentralAngle(coordinate);
     }
 
-    protected static double doGetCentralAngle(Coordinate c1, Coordinate c2){
-        SphericCoordinate c1s = c1.asSphericCoordinate();
-        SphericCoordinate c2s = c2.asSphericCoordinate();
-
+    public double doGetCentralAngle(Coordinate other){
+        SphericCoordinate sc = other.asSphericCoordinate();
         double centralAngle = Math.acos(
-            Math.sin(c1s.latitude) * Math.sin(c2s.latitude)
+            Math.sin(this.latitude) * Math.sin(sc.latitude)
             +
-            Math.cos(c1s.latitude) * Math.cos(c2s.latitude) * Math.cos(Math.abs(c2s.longitude-c1s.longitude))
+            Math.cos(this.latitude) * Math.cos(sc.latitude) * Math.cos(Math.abs(sc.longitude-this.longitude))
         );
 
         return centralAngle;
