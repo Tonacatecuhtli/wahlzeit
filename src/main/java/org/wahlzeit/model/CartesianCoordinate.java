@@ -53,7 +53,7 @@ public class CartesianCoordinate implements Coordinate {
      * calculate the cartesian distance between this and another CartesianCoordinate
      * @methodproperty primitive
      */
-    protected double getDistance(CartesianCoordinate other) {
+    public double getDistance(CartesianCoordinate other) {
         double xDif = Math.pow((other.x - this.x), 2);
         double yDif = Math.pow((other.y - this.y), 2);
         double zDif = Math.pow((other.z - this.z), 2);

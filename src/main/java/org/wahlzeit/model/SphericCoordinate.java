@@ -112,7 +112,7 @@ public class SphericCoordinate implements Coordinate {
         SphericCoordinate sc = coordinate.asSphericCoordinate();
         return sc.radius * centralAngle;
     }
-
+k
     /**
      * @param other the SphericalCoordinate to compare to
      * @methodtype comparision
