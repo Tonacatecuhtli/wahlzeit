@@ -21,10 +21,30 @@
 package org.wahlzeit.model;
 
 public class CartesianCoordinate extends AbstractCoordinate{
+
     /**
      *
      */
-    private double x, y, z;
+    private double x;
+    public double getX() {
+        return x;
+    }
+
+    /**
+     *
+     */
+    private double y;
+    public double getY() {
+        return y;
+    }
+
+    /**
+     *
+     */
+    private double z;
+    public double getZ() {
+        return z;
+    }
 
     /**
      *
@@ -40,63 +60,21 @@ public class CartesianCoordinate extends AbstractCoordinate{
     }
 
     /**
-     * calculate the cartesian distance between this and another CartesianCoordinate
-     * @methodproperty primitive
-     */
-    protected double getDistance(CartesianCoordinate other) {
-        double xDif = Math.pow((other.x - this.x), 2);
-        double yDif = Math.pow((other.y - this.y), 2);
-        double zDif = Math.pow((other.z - this.z), 2);
-
-        return Math.sqrt(xDif + yDif + zDif);
-    }
-
-    /**
      * @methodtype conversion
      * @methodproterty primitive, hook
      */
     @Override
-    protected CartesianCoordinate doAsCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() {
         return this;
     }
 
     /**
-     * @param coordinate
-     * @methodtype getter
-     */
-    @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        return doGetCartesianDistance(this, coordinate);
-    }
-
-    /**
-     *
-     * @param c1 Coordinate 1
-     * @param c2 Coordinate 2
-     * @return the cartesian distance between to coordinates
-     */
-    protected static double doGetCartesianDistance(Coordinate c1, Coordinate c2){
-        CartesianCoordinate cc1 = c1.asCartesianCoordinate();
-        CartesianCoordinate cc2 = c2.asCartesianCoordinate();
-        return cc1.getDistance(cc2);
-    }
-
-    /**
      * @methodtype conversion
      * @methodproterty primitive, hook
      */
     @Override
-    protected SphericCoordinate doAsSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() {
         return new SphericCoordinate(this.x, this.y, this.z);
-    }
-
-    /**
-     * @param coordinate
-     * @methodtype getter
-     */
-    @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        return SphericCoordinate.doGetCentralAngle(this, coordinate);
     }
 
     /**

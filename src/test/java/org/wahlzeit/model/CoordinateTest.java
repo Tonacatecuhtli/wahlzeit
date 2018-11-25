@@ -79,8 +79,8 @@ public class CoordinateTest {
 
     @Test
     public void testDistance() {
-        assertEquals(cc1.getDistance(cc2), cartesianDistanceCc1Cc2, epsilon);
-        assertEquals(cc1.getDistance(cc1), 0, epsilon);
+        assertEquals(cc1.getCartesianDistance(cc2), cartesianDistanceCc1Cc2, epsilon);
+        assertEquals(cc1.getCartesianDistance(cc1), 0, epsilon);
     }
 
     @Test

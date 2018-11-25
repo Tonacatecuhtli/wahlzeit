@@ -25,14 +25,27 @@ public class SphericCoordinate extends AbstractCoordinate {
      * latitude = phi;
      */
     private double latitude;
+
+    public double getLatitude() {
+        return latitude;
+    }
+
     /**
      * longitude = theta;
      */
     private double longitude;
+
+    public double getLongitude() {
+        return longitude;
+    }
     /**
      *
      */
     private double radius;
+
+    public double getRadius() {
+        return radius;
+    }
 
     public SphericCoordinate(double latitude, double longitude, double radius) {
         if (isValid(latitude) && isValid(longitude) && isValid(radius)) {
@@ -49,17 +62,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodproterty primitive, hook
      */
     @Override
-    protected CartesianCoordinate doAsCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() {
         return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
-    }
-
-    /**
-     * @param coordinate
-     * @methodtype getter
-     */
-    @Override
-    public double getCartesianDistance(Coordinate coordinate) {
-        return CartesianCoordinate.doGetCartesianDistance(this, coordinate);
     }
 
     /**
@@ -67,30 +71,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodproterty primitive, hook
      */
     @Override
-    protected SphericCoordinate doAsSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() {
         return this;
-    }
-
-    /**
-     * @param coordinate
-     * @methodtype getter
-     */
-    @Override
-    public double getCentralAngle(Coordinate coordinate) {
-        return doGetCentralAngle(this, coordinate);
-    }
-
-    protected static double doGetCentralAngle(Coordinate c1, Coordinate c2) {
-        SphericCoordinate c1s = c1.asSphericCoordinate();
-        SphericCoordinate c2s = c2.asSphericCoordinate();
-
-        double centralAngle = Math.acos(
-                Math.sin(c1s.latitude) * Math.sin(c2s.latitude)
-                        +
-                        Math.cos(c1s.latitude) * Math.cos(c2s.latitude) * Math.cos(Math.abs(c2s.longitude - c1s.longitude))
-        );
-
-        return centralAngle;
     }
 
     /**
@@ -98,7 +80,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @return the actual arc length d on a sphere of radius r
      */
     public double getActualArcLength(Coordinate coordinate) {
-        double centralAngle = doGetCentralAngle(this, coordinate);
+        double centralAngle = getCentralAngle(coordinate);
         SphericCoordinate sc = coordinate.asSphericCoordinate();
         return sc.radius * centralAngle;
     }

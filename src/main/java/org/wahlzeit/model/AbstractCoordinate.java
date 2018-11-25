@@ -1,31 +1,38 @@
 package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate {
+
     /**
-     * @methodtype conversion
+     *  @param coordinate
+     *	@methodtype getter
      */
-    public CartesianCoordinate asCartesianCoordinate() {
-        return doAsCartesianCoordinate();
+    public double getCartesianDistance(Coordinate coordinate){
+        CartesianCoordinate cc1 = this.asCartesianCoordinate();
+        CartesianCoordinate cc2 = coordinate.asCartesianCoordinate();
+
+        double xDif = Math.pow((cc2.getX() - cc1.getX()), 2);
+        double yDif = Math.pow((cc2.getY() - cc1.getY()), 2);
+        double zDif = Math.pow((cc2.getZ() - cc1.getZ()), 2);
+
+        return Math.sqrt(xDif + yDif + zDif);
     }
 
     /**
-     * @methodtype conversion
-     * @methodproterty primitive, hook
+     *  @param coordinate
+     *	@methodtype getter
      */
-    protected abstract CartesianCoordinate doAsCartesianCoordinate();
+    public double getCentralAngle(Coordinate coordinate){
+        SphericCoordinate cs1 = this.asSphericCoordinate();
+        SphericCoordinate cs2 = coordinate.asSphericCoordinate();
 
-    /**
-     * @methodtype conversion
-     */
-    public SphericCoordinate asSphericCoordinate() {
-        return doAsSphericCoordinate();
+        double centralAngle = Math.acos(
+                Math.sin(cs1.getLatitude()) * Math.sin(cs2.getLatitude())
+                        +
+                        Math.cos(cs1.getLatitude()) * Math.cos(cs2.getLatitude()) * Math.cos(Math.abs(cs2.getLongitude() - cs1.getLongitude()))
+        );
+
+        return centralAngle;
     }
-
-    /**
-     * @methodtype conversion
-     * @methodproterty primitive, hook
-     */
-    protected abstract SphericCoordinate doAsSphericCoordinate();
 
     /**
      * @param coordinate
