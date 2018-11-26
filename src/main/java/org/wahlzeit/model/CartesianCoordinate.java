@@ -20,12 +20,13 @@
 
 package org.wahlzeit.model;
 
-public class CartesianCoordinate extends AbstractCoordinate{
+public class CartesianCoordinate extends AbstractCoordinate {
 
     /**
      *
      */
     private double x;
+
     public double getX() {
         return x;
     }
@@ -34,6 +35,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      *
      */
     private double y;
+
     public double getY() {
         return y;
     }
@@ -42,6 +44,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
      *
      */
     private double z;
+
     public double getZ() {
         return z;
     }
@@ -50,13 +53,10 @@ public class CartesianCoordinate extends AbstractCoordinate{
      *
      */
     public CartesianCoordinate(double x, double y, double z) {
-        if(isValid(x) && isValid(y) && isValid(z)){
-            this.x = x;
-            this.y = y;
-            this.z = z;
-        } else {
-            throw new IllegalArgumentException("All parameters must be >= 0");
-        }
+        assertClassInvariants(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
     }
 
     /**
@@ -78,7 +78,7 @@ public class CartesianCoordinate extends AbstractCoordinate{
     }
 
     /**
-     *	@methodtype comparision
+     * @methodtype comparision
      */
     @Override
     public boolean equals(Object obj) {
@@ -103,6 +103,27 @@ public class CartesianCoordinate extends AbstractCoordinate{
     @Override
     protected boolean doIsEqual(Coordinate coordinate) {
         CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        return  this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
+        return this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
+    }
+
+    /**
+     * make sure no coordinates are null
+     * make sure no coordinates are negative
+     *
+     * @param arg1 Coordinate parameter 1
+     * @param arg2 Coordinate parameter 2
+     * @param arg3 Coordinate parameter 3
+     * @methodType assertion
+     */
+    @Override
+    protected void assertClassInvariants(double arg1, double arg2, double arg3) {
+        // assertNotNull
+        assertNotNull(arg1);
+        assertNotNull(arg2);
+        assertNotNull(arg3);
+        // assertNotNegative
+        assertNotNegative(arg1);
+        assertNotNegative(arg2);
+        assertNotNegative(arg3);
     }
 }

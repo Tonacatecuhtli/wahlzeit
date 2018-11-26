@@ -38,6 +38,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     public double getLongitude() {
         return longitude;
     }
+
     /**
      *
      */
@@ -48,13 +49,10 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     public SphericCoordinate(double latitude, double longitude, double radius) {
-        if (isValid(latitude) && isValid(longitude) && isValid(radius)) {
-            this.latitude = latitude;
-            this.longitude = longitude;
-            this.radius = radius;
-        } else {
-            throw new IllegalArgumentException("All parameters must be >= 0");
-        }
+        assertClassInvariants(latitude, longitude, radius);
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.radius = radius;
     }
 
     /**
@@ -94,5 +92,26 @@ public class SphericCoordinate extends AbstractCoordinate {
     protected boolean doIsEqual(Coordinate coordinate) {
         SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
         return this.latitude == sphericCoordinate.latitude && this.longitude == sphericCoordinate.longitude && this.radius == sphericCoordinate.radius;
+    }
+
+    /**
+     * make sure no coordinates are null
+     * make sure no coordinates are negative
+     *
+     * @param arg1 Coordinate parameter 1
+     * @param arg2 Coordinate parameter 2
+     * @param arg3 Coordinate parameter 3
+     * @methodType assertion
+     */
+    @Override
+    protected void assertClassInvariants(double arg1, double arg2, double arg3) {
+        // assertNotNull
+        assertNotNull(arg1);
+        assertNotNull(arg2);
+        assertNotNull(arg3);
+        // assertNotNegative
+        assertNotNegative(arg1);
+        assertNotNegative(arg2);
+        assertNotNegative(arg3);
     }
 }

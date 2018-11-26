@@ -3,10 +3,10 @@ package org.wahlzeit.model;
 public abstract class AbstractCoordinate implements Coordinate {
 
     /**
-     *  @param coordinate
-     *	@methodtype getter
+     * @param coordinate
+     * @methodtype getter
      */
-    public double getCartesianDistance(Coordinate coordinate){
+    public double getCartesianDistance(Coordinate coordinate) {
         CartesianCoordinate cc1 = this.asCartesianCoordinate();
         CartesianCoordinate cc2 = coordinate.asCartesianCoordinate();
 
@@ -18,10 +18,10 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
-     *  @param coordinate
-     *	@methodtype getter
+     * @param coordinate
+     * @methodtype getter
      */
-    public double getCentralAngle(Coordinate coordinate){
+    public double getCentralAngle(Coordinate coordinate) {
         SphericCoordinate cs1 = this.asSphericCoordinate();
         SphericCoordinate cs2 = coordinate.asSphericCoordinate();
 
@@ -57,4 +57,24 @@ public abstract class AbstractCoordinate implements Coordinate {
         return value >= 0;
     }
 
+    /**
+     * make sure no coordinates are null
+     * make sure no coordinates are negative
+     *
+     * @param arg1 Coordinate parameter 1
+     * @param arg2 Coordinate parameter 2
+     * @param arg3 Coordinate parameter 3
+     * @methodType assertion
+     */
+    protected abstract void assertClassInvariants(double arg1, double arg2, double arg3);
+
+    protected void assertNotNull(Double arg) throws IllegalArgumentException {
+        if (arg == null)
+            throw new IllegalArgumentException("argument can not be null");
+    }
+
+    protected void assertNotNegative(double arg) throws IllegalArgumentException {
+        if (arg < 0)
+            throw new IllegalArgumentException("argument can not be negative");
+    }
 }
