@@ -27,7 +27,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double latitude;
 
     /**
-     *
+     * @methodType getter
      */
     public double getLatitude() {
         return latitude;
@@ -39,7 +39,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double longitude;
 
     /**
-     *
+     * @methodType getter
      */
     public double getLongitude() {
         return longitude;
@@ -51,7 +51,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     private double radius;
 
     /**
-     *
+     * @methodType getter
      */
     public double getRadius() {
         return radius;
@@ -76,7 +76,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodType helper
      * @param latitude in rad
      * @param longitude in rad
-     * @param radius
+     * @param radius the radius
      * @param normalize boolean default = true
      */
     private void constructSphericCoordinate(double latitude, double longitude, double radius, boolean normalize) {
@@ -95,8 +95,9 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
+     * @methodType helper
      * @param angle a radial angle
-     * @return
+     * @return radial angle on a circle without multiple rounds
      */
     private double normalizeRadAngle(double angle) {
         double twoPi = 2 * Math.PI;

@@ -3,8 +3,9 @@ package org.wahlzeit.model;
 public abstract class AbstractCoordinate implements Coordinate {
 
     /**
+     * calculates the cartesian distance
      * @param coordinate
-     * @methodtype getter
+     * @return cartesianDistance
      */
     public double getCartesianDistance(Coordinate coordinate) {
         CartesianCoordinate cc1 = this.asCartesianCoordinate();
@@ -18,8 +19,9 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
+     * calculates the central angle
      * @param coordinate
-     * @methodtype getter
+     * @return centralAngle
      */
     public double getCentralAngle(Coordinate coordinate) {
         SphericCoordinate cs1 = this.asSphericCoordinate();
@@ -68,11 +70,21 @@ public abstract class AbstractCoordinate implements Coordinate {
      */
     protected abstract void assertClassInvariants(double arg1, double arg2, double arg3);
 
+    /**
+     * @methodType assertion
+     * @param arg a Double argument
+     * @throws IllegalArgumentException
+     */
     protected void assertNotNull(Double arg) throws IllegalArgumentException {
         if (arg == null)
             throw new IllegalArgumentException("argument can not be null");
     }
 
+    /**
+     * @methodType assertion
+     * @param arg
+     * @throws IllegalArgumentException
+     */
     protected void assertNotNegative(double arg) throws IllegalArgumentException {
         if (arg < 0)
             throw new IllegalArgumentException("argument can not be negative");
