@@ -22,7 +22,7 @@ package org.wahlzeit.model;
 
 public class SphericCoordinate extends AbstractCoordinate {
     /**
-     * latitude = phi;
+     * latitude = phi in rad
      */
     private double latitude;
 
@@ -31,7 +31,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * longitude = theta;
+     * longitude = theta in rad
      */
     private double longitude;
 
