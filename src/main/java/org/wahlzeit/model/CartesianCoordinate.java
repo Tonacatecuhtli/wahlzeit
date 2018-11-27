@@ -114,25 +114,4 @@ public class CartesianCoordinate extends AbstractCoordinate {
         CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
         return this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
     }
-
-    /**
-     * make sure no coordinates are null
-     * make sure no coordinates are negative
-     *
-     * @param arg1 Coordinate parameter 1
-     * @param arg2 Coordinate parameter 2
-     * @param arg3 Coordinate parameter 3
-     * @methodType assertion
-     */
-    @Override
-    protected void assertClassInvariants(double arg1, double arg2, double arg3) {
-        // assertNotNull
-        assertNotNull(arg1);
-        assertNotNull(arg2);
-        assertNotNull(arg3);
-        // assertNotNegative
-        assertNotNegative(arg1);
-        assertNotNegative(arg2);
-        assertNotNegative(arg3);
-    }
 }

@@ -68,7 +68,16 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param arg3 Coordinate parameter 3
      * @methodType assertion
      */
-    protected abstract void assertClassInvariants(double arg1, double arg2, double arg3);
+    protected void assertClassInvariants(double arg1, double arg2, double arg3){
+        // assertNotNull
+        assertNotNull(arg1);
+        assertNotNull(arg2);
+        assertNotNull(arg3);
+        // assertNotNegative
+        assertNotNegative(arg1);
+        assertNotNegative(arg2);
+        assertNotNegative(arg3);
+    }
 
     /**
      * @methodType assertion

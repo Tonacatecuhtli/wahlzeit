@@ -144,27 +144,6 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * make sure no coordinates are null
-     * make sure no coordinates are negative
-     *
-     * @param arg1 Coordinate parameter 1
-     * @param arg2 Coordinate parameter 2
-     * @param arg3 Coordinate parameter 3
-     * @methodType assertion
-     */
-    @Override
-    protected void assertClassInvariants(double arg1, double arg2, double arg3) {
-        // assertNotNull
-        assertNotNull(arg1);
-        assertNotNull(arg2);
-        assertNotNull(arg3);
-        // assertNotNegative
-        assertNotNegative(arg1);
-        assertNotNegative(arg2);
-        assertNotNegative(arg3);
-    }
-
-    /**
      * checks if an angle is <= 2 pi
      *
      * @param latitude  in rad
