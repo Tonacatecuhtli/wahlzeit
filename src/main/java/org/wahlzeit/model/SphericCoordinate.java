@@ -26,6 +26,9 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     private double latitude;
 
+    /**
+     *
+     */
     public double getLatitude() {
         return latitude;
     }
@@ -35,6 +38,9 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     private double longitude;
 
+    /**
+     *
+     */
     public double getLongitude() {
         return longitude;
     }
@@ -44,15 +50,57 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     private double radius;
 
+    /**
+     *
+     */
     public double getRadius() {
         return radius;
     }
 
+    /**
+     *
+     */
     public SphericCoordinate(double latitude, double longitude, double radius) {
+        // normalize default is set to true
+        constructSphericCoordinate(latitude, longitude, radius, true);
+    }
+
+    /**
+     *
+     */
+    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) {
+        constructSphericCoordinate(latitude, longitude, radius, normalize);
+    }
+
+    /**
+     * @methodType helper
+     * @param latitude in rad
+     * @param longitude in rad
+     * @param radius
+     * @param normalize boolean default = true
+     */
+    private void constructSphericCoordinate(double latitude, double longitude, double radius, boolean normalize) {
         assertClassInvariants(latitude, longitude, radius);
+
+        if (normalize) {
+            latitude = normalizeRadAngle(latitude);
+            longitude = normalizeRadAngle(longitude);
+        } else {
+            assertValidRad(latitude, longitude);
+        }
+
         this.latitude = latitude;
         this.longitude = longitude;
         this.radius = radius;
+    }
+
+    /**
+     * @param angle a radial angle
+     * @return
+     */
+    private double normalizeRadAngle(double angle) {
+        double twoPi = 2 * Math.PI;
+        return angle % twoPi;
     }
 
     /**
@@ -113,5 +161,19 @@ public class SphericCoordinate extends AbstractCoordinate {
         assertNotNegative(arg1);
         assertNotNegative(arg2);
         assertNotNegative(arg3);
+    }
+
+    /**
+     * checks if an angle is <= 2 pi
+     *
+     * @param latitude  in rad
+     * @param longitude in rad
+     * @methodType assertion
+     */
+    protected void assertValidRad(double latitude, double longitude) throws IllegalArgumentException {
+        double twoPi = 2 * Math.PI;
+        if (latitude > twoPi || longitude > twoPi)
+            throw new IllegalArgumentException("If you aren't normalizing radiants shouldnt be bigger than two pi");
+
     }
 }

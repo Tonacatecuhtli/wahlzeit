@@ -39,10 +39,13 @@ public class CoordinateTest {
     private SphericCoordinate sc2;
     private SphericCoordinate sc3;
 
-
     private double cartesianDistanceCc1Cc2;
     private double centralAngleSc1Sc2;
     private double actualArcLengthSc1Sc3;
+
+    private double twoPi = 2 * Math.PI;
+    private double bigLatitude = 7;
+    private double bigLongitude = 7;
 
     // delta of which assertEquals double, test variables can be different
     private static final double epsilon = 1e-10;
@@ -97,6 +100,22 @@ public class CoordinateTest {
     public void ensureInterchangeability(){
         assertEquals(cc1.getCentralAngle(sc2), centralAngleSc1Sc2, epsilon);
         assertEquals(sc1.getCentralAngle(cc2), centralAngleSc1Sc2, epsilon);
+    }
+
+    @Test
+    public void testNormalize(){
+       SphericCoordinate ss = new SphericCoordinate(this.bigLatitude, this.bigLongitude, 5);
+       assertEquals(ss.getLatitude(), this.bigLatitude % twoPi, epsilon);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testAssertValidRad(){
+        SphericCoordinate ss = new SphericCoordinate(
+                this.bigLatitude,
+                this.bigLongitude,
+                5,
+                false
+        );
     }
 
     @After
