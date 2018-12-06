@@ -61,7 +61,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    public CartesianCoordinate(double x, double y, double z) {
+    public CartesianCoordinate(double x, double y, double z) throws CoordinateException {
         assertClassInvariants(x, y, z);
         this.x = x;
         this.y = y;
@@ -82,7 +82,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodproterty primitive, hook
      */
     @Override
-    public SphericCoordinate asSphericCoordinate() {
+    public SphericCoordinate asSphericCoordinate() throws CoordinateException {
         return new SphericCoordinate(this.x, this.y, this.z);
     }
 
@@ -111,7 +111,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     protected boolean doIsEqual(Coordinate coordinate) {
-        CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
-        return this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
+        try {
+            CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
+            return this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
+        } catch (CoordinateException e){
+            return false;
+        }
     }
 }

@@ -24,33 +24,27 @@ public class Location {
     /**
      *
      */
-    protected CartesianCoordinate cartesianCoordinate;
+    protected Coordinate coordinate;
 
     /**
      * create a location directly with a cartesianCoordinate
      */
-    public Location(CartesianCoordinate cartesianCoordinate){
-        this.cartesianCoordinate = cartesianCoordinate;
+    public Location(Coordinate coordinate){
+        this.coordinate = coordinate;
     }
 
     /**
      * create a location and cartesianCoordinate by supplying coordinates.
      */
-    public Location(double x, double y, double z) {
-        this.cartesianCoordinate = new CartesianCoordinate(x, y, z);
+    public Location(double x, double y, double z) throws CoordinateException{
+        this.coordinate = new CartesianCoordinate(x, y, z);
+
     }
 
     /**
      * @methodtype get
      */
-    public CartesianCoordinate getCoordinate() {
-        return cartesianCoordinate;
-    }
-
-    /**
-     * @methodtype set
-     */
-    public void setCoordinate(CartesianCoordinate cartesianCoordinate) {
-        this.cartesianCoordinate = cartesianCoordinate;
+    public Coordinate getCoordinate() {
+        return coordinate;
     }
 }

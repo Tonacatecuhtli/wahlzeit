@@ -7,7 +7,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param coordinate
      * @return cartesianDistance
      */
-    public double getCartesianDistance(Coordinate coordinate) {
+    public double getCartesianDistance(Coordinate coordinate) throws CoordinateException {
         CartesianCoordinate cc1 = this.asCartesianCoordinate();
         CartesianCoordinate cc2 = coordinate.asCartesianCoordinate();
 
@@ -23,7 +23,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @param coordinate
      * @return centralAngle
      */
-    public double getCentralAngle(Coordinate coordinate) {
+    public double getCentralAngle(Coordinate coordinate) throws CoordinateException {
         SphericCoordinate cs1 = this.asSphericCoordinate();
         SphericCoordinate cs2 = coordinate.asSphericCoordinate();
 
@@ -69,7 +69,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @methodType assertion
      * @methodProperty hook
      */
-    protected void assertClassInvariants(double arg1, double arg2, double arg3){
+    protected void assertClassInvariants(double arg1, double arg2, double arg3) throws CoordinateException{
         // assertNotNull
         assertNotNull(arg1);
         assertNotNull(arg2);
@@ -83,20 +83,20 @@ public abstract class AbstractCoordinate implements Coordinate {
     /**
      * @methodType assertion
      * @param arg a Double argument
-     * @throws IllegalArgumentException
+     * @throws CoordinateException
      */
-    protected void assertNotNull(Double arg) throws IllegalArgumentException {
+    protected void assertNotNull(Double arg) throws CoordinateException {
         if (arg == null)
-            throw new IllegalArgumentException("argument can not be null");
+            throw new CoordinateException("argument can not be null");
     }
 
     /**
      * @methodType assertion
      * @param arg
-     * @throws IllegalArgumentException
+     * @throws CoordinateException
      */
-    protected void assertNotNegative(double arg) throws IllegalArgumentException {
+    protected void assertNotNegative(double arg) throws CoordinateException {
         if (arg < 0)
-            throw new IllegalArgumentException("argument can not be negative");
+            throw new CoordinateException("argument can not be negative");
     }
 }

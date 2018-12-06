@@ -25,24 +25,24 @@ public interface Coordinate {
     /**
      *	@methodtype conversion
      */
-    public CartesianCoordinate asCartesianCoordinate();
+    public CartesianCoordinate asCartesianCoordinate() throws CoordinateException;
 
     /**
      *  @param coordinate
      *	@methodtype getter
      */
-    public double getCartesianDistance(Coordinate coordinate);
+    public double getCartesianDistance(Coordinate coordinate) throws CoordinateException;
 
     /**
      *	@methodtype conversion
      */
-    public SphericCoordinate asSphericCoordinate();
+    public SphericCoordinate asSphericCoordinate() throws CoordinateException;
 
     /**
      *  @param coordinate
      *	@methodtype getter
      */
-    public double getCentralAngle(Coordinate coordinate);
+    public double getCentralAngle(Coordinate coordinate) throws CoordinateException;
 
     /**
      *  @param coordinate

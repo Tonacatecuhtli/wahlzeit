@@ -60,7 +60,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    public SphericCoordinate(double latitude, double longitude, double radius) {
+    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException{
         // normalize default is set to true
         constructSphericCoordinate(latitude, longitude, radius, true);
     }
@@ -68,7 +68,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) {
+    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
         constructSphericCoordinate(latitude, longitude, radius, normalize);
     }
 
@@ -79,7 +79,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius the radius
      * @param normalize boolean default = true
      */
-    private void constructSphericCoordinate(double latitude, double longitude, double radius, boolean normalize) {
+    private void constructSphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
         assertClassInvariants(latitude, longitude, radius);
 
         if (normalize) {
@@ -109,7 +109,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodproterty primitive, hook
      */
     @Override
-    public CartesianCoordinate asCartesianCoordinate() {
+    public CartesianCoordinate asCartesianCoordinate() throws CoordinateException {
         return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
     }
 
@@ -126,7 +126,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param coordinate Coordinate
      * @return the actual arc length d on a sphere of radius r
      */
-    public double getActualArcLength(Coordinate coordinate) {
+    public double getActualArcLength(Coordinate coordinate) throws CoordinateException {
         double centralAngle = getCentralAngle(coordinate);
         SphericCoordinate sc = coordinate.asSphericCoordinate();
         return sc.radius * centralAngle;
@@ -139,8 +139,12 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     @Override
     protected boolean doIsEqual(Coordinate coordinate) {
-        SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
-        return this.latitude == sphericCoordinate.latitude && this.longitude == sphericCoordinate.longitude && this.radius == sphericCoordinate.radius;
+        try {
+            SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
+            return this.latitude == sphericCoordinate.latitude && this.longitude == sphericCoordinate.longitude && this.radius == sphericCoordinate.radius;
+        } catch (CoordinateException e){
+            return false;
+        }
     }
 
     /**
@@ -153,7 +157,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     protected void assertValidRad(double latitude, double longitude) throws IllegalArgumentException {
         double twoPi = 2 * Math.PI;
         if (latitude > twoPi || longitude > twoPi)
-            throw new IllegalArgumentException("If you aren't normalizing radiants shouldnt be bigger than two pi");
+            throw new IllegalArgumentException("If you aren't normalizing, radiants shouldn't be bigger than two pi");
 
     }
 }
