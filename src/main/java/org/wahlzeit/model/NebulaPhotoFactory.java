@@ -42,9 +42,8 @@ public class NebulaPhotoFactory extends PhotoFactory {
      * Method to set the singleton instance of NebulaPhotoFactory.
      */
     protected static synchronized void setInstance(NebulaPhotoFactory nebulaPhotoFactory) {
-        if (instance != null) {
-            throw new IllegalStateException("attempt to initalize PhotoFactory twice");
-        }
+        assertInstanceIsNotNull(instance);
+
 
         instance = nebulaPhotoFactory;
     }
