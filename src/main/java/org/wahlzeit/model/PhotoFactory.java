@@ -65,7 +65,7 @@ public class PhotoFactory {
 	 * Method to set the singleton instance of PhotoFactory.
 	 */
 	protected static synchronized void setInstance(PhotoFactory photoFactory) {
-		assertInstanceIsNotNull(instance);
+		assertInstanceIsNull(instance);
 
 		instance = photoFactory;
 	}
@@ -115,7 +115,12 @@ public class PhotoFactory {
 		return new PhotoTagCollector();
 	}
 
-	protected static void assertInstanceIsNotNull( PhotoFactory instance) throws IllegalStateException {
+	/**
+	 * @methodType assertion
+	 * @param instance a PhotoFactory
+	 * @throws IllegalStateException
+	 */
+	protected static void assertInstanceIsNull(PhotoFactory instance) throws IllegalStateException {
 		if (instance != null) {
 			throw new IllegalStateException("attempt to initalize PhotoFactory twice");
 		}
