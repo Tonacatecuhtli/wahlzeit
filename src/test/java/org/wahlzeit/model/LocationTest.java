@@ -22,6 +22,7 @@ package org.wahlzeit.model;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
@@ -30,32 +31,24 @@ public class LocationTest {
     private Location location;
 
     @Before
-    public void setUp() {
-        this.location = new Location(5,4,3);
+    public void setUp() throws CoordinateException {
+        this.location = new Location(5, 4, 3);
     }
 
     @Test
-    public void testSetCoordinate() {
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3,3,3);
-
-        location.setCoordinate(cartesianCoordinate);
-        assertEquals(cartesianCoordinate, location.getCoordinate());
-    }
-
-    @Test
-    public void testConstructorWithCoordinate() {
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3,3,3);
+    public void testConstructorWithCoordinate() throws CoordinateException {
+        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3, 3, 3);
         new Location(cartesianCoordinate);
     }
 
     @Test
-    public void testConstructorWithCoordinates() {
-        new Location(1,2,3);
+    public void testConstructorWithCoordinates() throws CoordinateException {
+        new Location(1, 2, 3);
     }
 
     @Test
-    public void getCoordinatesTest() {
-        CartesianCoordinate locationCartesianCoordinate = location.getCoordinate();
-        assertTrue(locationCartesianCoordinate.getClass().getName() == CartesianCoordinate.class.getName());
+    public void getCoordinatesTest() throws CoordinateException {
+        Coordinate coordinate = location.getCoordinate();
+        assertEquals(coordinate, new CartesianCoordinate(5 , 4, 3));
     }
 }

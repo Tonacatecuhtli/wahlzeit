@@ -51,25 +51,25 @@ public class CoordinateTest {
     private static final double epsilon = 1e-10;
 
     @Before
-    public void setUp () {
-        cc1 = new CartesianCoordinate(1,1,1);
-        cc2 = new CartesianCoordinate(2,2,2);
+    public void setUp() throws CoordinateException {
+        cc1 = new CartesianCoordinate(1, 1, 1);
+        cc2 = new CartesianCoordinate(2, 2, 2);
         // cc2 with 2,2,2 - cc1 with 1,1,1 = sqrt(3)
         cartesianDistanceCc1Cc2 = Math.sqrt(3);
 
-        sc1 = new SphericCoordinate(1,1,1);
-        sc2 = new SphericCoordinate(2,2,2);
-        sc3 = new SphericCoordinate(3,4,5);
+        sc1 = new SphericCoordinate(1, 1, 1);
+        sc2 = new SphericCoordinate(2, 2, 2);
+        sc3 = new SphericCoordinate(3, 4, 5);
 
         centralAngleSc1Sc2 = 0.8715212348676055;
         actualArcLengthSc1Sc3 = 4.327295325724265;
 
     }
 
-    @Test(expected = IllegalArgumentException.class)
-    public void invalidConstructionTest(){
-        new SphericCoordinate(-1, -1,-1);
-        new CartesianCoordinate( -1, -1, -1);
+    @Test(expected = CoordinateException.class)
+    public void invalidConstructionTest() throws CoordinateException {
+        new SphericCoordinate(-1, -1, -1);
+        new CartesianCoordinate(-1, -1, -1);
     }
 
     @Test
@@ -81,35 +81,35 @@ public class CoordinateTest {
     }
 
     @Test
-    public void testDistance() {
+    public void testDistance() throws CoordinateException {
         assertEquals(cc1.getCartesianDistance(cc2), cartesianDistanceCc1Cc2, epsilon);
         assertEquals(cc1.getCartesianDistance(cc1), 0, epsilon);
     }
 
     @Test
-    public void testCentralAngle(){
+    public void testCentralAngle() throws CoordinateException {
         assertEquals(sc1.getCentralAngle(sc2), centralAngleSc1Sc2, epsilon);
     }
 
     @Test
-    public void testActualArcLength(){
+    public void testActualArcLength() throws CoordinateException {
         assertEquals(sc1.getActualArcLength(sc3), actualArcLengthSc1Sc3, epsilon);
     }
 
     @Test
-    public void ensureInterchangeability(){
+    public void ensureInterchangeability() throws CoordinateException {
         assertEquals(cc1.getCentralAngle(sc2), centralAngleSc1Sc2, epsilon);
         assertEquals(sc1.getCentralAngle(cc2), centralAngleSc1Sc2, epsilon);
     }
 
     @Test
-    public void testNormalize(){
-       SphericCoordinate ss = new SphericCoordinate(this.bigLatitude, this.bigLongitude, 5);
-       assertEquals(ss.getLatitude(), this.bigLatitude % twoPi, epsilon);
+    public void testNormalize() throws CoordinateException {
+        SphericCoordinate ss = new SphericCoordinate(this.bigLatitude, this.bigLongitude, 5);
+        assertEquals(ss.getLatitude(), this.bigLatitude % twoPi, epsilon);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void testAssertValidRad(){
+    public void testAssertValidRad() throws CoordinateException {
         SphericCoordinate ss = new SphericCoordinate(
                 this.bigLatitude,
                 this.bigLongitude,
@@ -119,7 +119,7 @@ public class CoordinateTest {
     }
 
     @After
-    public void tearDown () {
+    public void tearDown() {
         // remove references so that garbage collection will delete the objects.
         cc1 = null;
         cc2 = null;
