@@ -24,7 +24,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * latitude = phi in rad
      */
-    private double latitude;
+    private final double latitude;
 
     /**
      * @methodType getter
@@ -36,7 +36,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * longitude = theta in rad
      */
-    private double longitude;
+    private final double longitude;
 
     /**
      * @methodType getter
@@ -48,7 +48,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double radius;
+    private final double radius;
 
     /**
      * @methodType getter
@@ -60,16 +60,28 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException{
-        // normalize default is set to true
-        constructSphericCoordinate(latitude, longitude, radius, true);
-    }
+    private boolean normalize = true;
 
     /**
-     *
+     * @methodType helper
+     * @param latitude in rad
+     * @param longitude in rad
+     * @param radius the radius
      */
-    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
-        constructSphericCoordinate(latitude, longitude, radius, normalize);
+    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException{
+        // normalize default is set to true
+        assertClassInvariants(latitude, longitude, radius);
+
+        if (normalize) {
+            latitude = normalizeRadAngle(latitude);
+            longitude = normalizeRadAngle(longitude);
+        } else {
+            assertValidRad(latitude, longitude);
+        }
+
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.radius = radius;
     }
 
     /**
@@ -79,7 +91,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius the radius
      * @param normalize boolean default = true
      */
-    private void constructSphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
+    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
+        this.normalize = normalize;
         assertClassInvariants(latitude, longitude, radius);
 
         if (normalize) {

@@ -25,7 +25,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double x;
+    private final double x;
 
     /**
      * @methodType getter
@@ -37,7 +37,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double y;
+    private final double y;
 
     /**
      * @methodType getter
@@ -49,7 +49,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double z;
+    private final double z;
 
     /**
      * @methodType getter
