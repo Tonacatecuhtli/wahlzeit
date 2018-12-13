@@ -76,10 +76,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
         String id = getId(arg1,arg2,arg3);
         CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
         if(coordinate != null){
-            log.info("CartesianCoordinate exists");
+            // log.info("CartesianCoordinate exists");
             return coordinate;
         } else {
-            log.info("CartesianCoordinate new");
+            // log.info("CartesianCoordinate new");
             coordinate = new CartesianCoordinate(arg1, arg2, arg3);
             id = coordinate.getId(arg1, arg2, arg3);
             cartesianCoordinateHashMap.put(id, coordinate);
@@ -112,7 +112,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      */
     @Override
     public SphericCoordinate asSphericCoordinate() throws CoordinateException {
-        return new SphericCoordinate(this.x, this.y, this.z);
+        return SphericCoordinate.createCoordinate(this.x, this.y, this.z);
     }
 
     /**

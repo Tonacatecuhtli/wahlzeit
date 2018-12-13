@@ -81,10 +81,10 @@ public class SphericCoordinate extends AbstractCoordinate {
         String id = getId(arg1,arg2,arg3);
         SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
         if(coordinate != null){
-            log.info("SphericCoordinate exists");
+            // log.info("SphericCoordinate exists");
             return coordinate;
         } else {
-            log.info("SphericCoordinate new");
+            // log.info("SphericCoordinate new");
             coordinate = new SphericCoordinate(arg1, arg2, arg3);
             id = coordinate.getId(arg1, arg2, arg3);
             sphericCoordinateHashMap.put(id, coordinate);
@@ -176,7 +176,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     @Override
     public CartesianCoordinate asCartesianCoordinate() throws CoordinateException {
 
-        return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
+        return CartesianCoordinate.createCoordinate(this.latitude, this.longitude, this.radius);
     }
 
     /**
