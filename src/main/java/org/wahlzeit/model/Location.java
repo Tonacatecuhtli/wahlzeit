@@ -29,14 +29,14 @@ public class Location {
     /**
      * create a location directly with a cartesianCoordinate
      */
-    public Location(Coordinate coordinate){
+    public Location(Coordinate coordinate) {
         this.coordinate = coordinate;
     }
 
     /**
      * create a location and cartesianCoordinate by supplying coordinates.
      */
-    public Location(double x, double y, double z) throws CoordinateException{
+    public Location(double x, double y, double z) throws CoordinateException {
         this.coordinate = CartesianCoordinate.createCoordinate(x, y, z);
 
     }

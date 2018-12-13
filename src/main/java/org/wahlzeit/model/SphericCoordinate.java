@@ -66,7 +66,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private boolean normalize = true;
+    private static final boolean normilaze = true;
 
     private static final HashMap<String, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
 
@@ -78,18 +78,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
 
     public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        String id = getId(arg1,arg2,arg3);
-        SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
-        if(coordinate != null){
-            // log.info("SphericCoordinate exists");
-            return coordinate;
-        } else {
-            // log.info("SphericCoordinate new");
-            coordinate = new SphericCoordinate(arg1, arg2, arg3);
-            id = coordinate.getId(arg1, arg2, arg3);
-            sphericCoordinateHashMap.put(id, coordinate);
-            return coordinate;
-        }
+        return createCoordinateHelper(arg1, arg2, arg3, normilaze);
     }
 
     /**
@@ -100,9 +89,13 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
 
     public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3, boolean normilaze) throws CoordinateException {
-        String id = getId(arg1,arg2,arg3);
+        return createCoordinateHelper(arg1, arg2, arg3, normilaze);
+    }
+
+    private static SphericCoordinate createCoordinateHelper(double arg1, double arg2, double arg3, boolean normilaze) throws CoordinateException {
+        String id = getId(arg1, arg2, arg3);
         SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
-        if(coordinate != null){
+        if (coordinate != null) {
             log.info("SphericCoordinate exists");
             return coordinate;
         } else {
@@ -118,33 +111,10 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param latitude  in rad
      * @param longitude in rad
      * @param radius    the radius
-     * @methodType constructor
-     */
-    private SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
-        // normalize default is set to true
-        assertClassInvariants(latitude, longitude, radius);
-
-        if (normalize) {
-            latitude = normalizeRadAngle(latitude);
-            longitude = normalizeRadAngle(longitude);
-        } else {
-            assertValidRad(latitude, longitude);
-        }
-
-        this.latitude = latitude;
-        this.longitude = longitude;
-        this.radius = radius;
-    }
-
-    /**
-     * @param latitude  in rad
-     * @param longitude in rad
-     * @param radius    the radius
      * @param normalize boolean default = true
      * @methodType helper
      */
     private SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
-        this.normalize = normalize;
         assertClassInvariants(latitude, longitude, radius);
 
         if (normalize) {

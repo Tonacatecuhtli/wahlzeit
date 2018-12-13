@@ -49,6 +49,6 @@ public class LocationTest {
     @Test
     public void getCoordinatesTest() throws CoordinateException {
         Coordinate coordinate = location.getCoordinate();
-        assertEquals(coordinate, CartesianCoordinate.createCoordinate(5 , 4, 3));
+        assertEquals(coordinate, CartesianCoordinate.createCoordinate(5, 4, 3));
     }
 }

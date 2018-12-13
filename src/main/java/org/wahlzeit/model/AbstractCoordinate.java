@@ -4,6 +4,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     /**
      * calculates the cartesian distance
+     *
      * @param coordinate
      * @return cartesianDistance
      */
@@ -20,6 +21,7 @@ public abstract class AbstractCoordinate implements Coordinate {
 
     /**
      * calculates the central angle
+     *
      * @param coordinate
      * @return centralAngle
      */
@@ -69,7 +71,7 @@ public abstract class AbstractCoordinate implements Coordinate {
      * @methodType assertion
      * @methodProperty hook
      */
-    protected void assertClassInvariants(double arg1, double arg2, double arg3) throws CoordinateException{
+    protected void assertClassInvariants(double arg1, double arg2, double arg3) throws CoordinateException {
         // assertNotNull
         assertNotNull(arg1);
         assertNotNull(arg2);
@@ -81,9 +83,9 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
-     * @methodType assertion
      * @param arg a Double argument
      * @throws CoordinateException
+     * @methodType assertion
      */
     protected void assertNotNull(Double arg) throws CoordinateException {
         if (arg == null)
@@ -91,9 +93,9 @@ public abstract class AbstractCoordinate implements Coordinate {
     }
 
     /**
-     * @methodType assertion
      * @param arg
      * @throws CoordinateException
+     * @methodType assertion
      */
     protected void assertNotNegative(double arg) throws CoordinateException {
         if (arg < 0)

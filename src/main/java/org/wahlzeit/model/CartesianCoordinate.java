@@ -66,6 +66,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
 
     private static final HashMap<String, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
+
     /**
      * @param arg1 argument one
      * @param arg2 argument two
@@ -73,9 +74,9 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodtype helper constructor
      */
     public static synchronized CartesianCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        String id = getId(arg1,arg2,arg3);
+        String id = getId(arg1, arg2, arg3);
         CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
-        if(coordinate != null){
+        if (coordinate != null) {
             // log.info("CartesianCoordinate exists");
             return coordinate;
         } else {
