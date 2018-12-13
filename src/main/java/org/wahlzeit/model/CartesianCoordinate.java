@@ -26,12 +26,55 @@ import java.util.logging.Logger;
 public class CartesianCoordinate extends AbstractCoordinate {
 
     private static final Logger log = Logger.getLogger(CartesianCoordinate.class.getName());
-
-
+    private static final HashMap<String, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
     /**
      *
      */
     private double x;
+    /**
+     *
+     */
+    private double y;
+    /**
+     *
+     */
+    private double z;
+
+    /**
+     *
+     * @param x argument one
+     * @param y argument two
+     * @param z argument three
+     * @throws CoordinateException
+     */
+    private CartesianCoordinate(double x, double y, double z) throws CoordinateException {
+        assertClassInvariants(x, y, z);
+        this.x = x;
+        this.y = y;
+        this.z = z;
+    }
+
+    /**
+     * @param x argument one
+     * @param y argument two
+     * @param z argument three
+     * @methodtype helper constructor
+     * @throws CoordinateException
+     */
+    public static synchronized CartesianCoordinate createCoordinate(double x, double y, double z) throws CoordinateException {
+        String id = getId(x, y, z);
+        CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
+        if (coordinate != null) {
+            // log.info("CartesianCoordinate exists");
+            return coordinate;
+        } else {
+            // log.info("CartesianCoordinate new");
+            coordinate = new CartesianCoordinate(x, y, z);
+            id = coordinate.getId(x, y, z);
+            cartesianCoordinateHashMap.put(id, coordinate);
+            return coordinate;
+        }
+    }
 
     /**
      * @methodType getter
@@ -41,11 +84,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     *
-     */
-    private double y;
-
-    /**
      * @methodType getter
      */
     public double getY() {
@@ -53,49 +91,10 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
     /**
-     *
-     */
-    private double z;
-
-    /**
      * @methodType getter
      */
     public double getZ() {
         return z;
-    }
-
-
-    private static final HashMap<String, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
-
-    /**
-     * @param arg1 argument one
-     * @param arg2 argument two
-     * @param arg3 argument three
-     * @methodtype helper constructor
-     */
-    public static synchronized CartesianCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        String id = getId(arg1, arg2, arg3);
-        CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
-        if (coordinate != null) {
-            // log.info("CartesianCoordinate exists");
-            return coordinate;
-        } else {
-            // log.info("CartesianCoordinate new");
-            coordinate = new CartesianCoordinate(arg1, arg2, arg3);
-            id = coordinate.getId(arg1, arg2, arg3);
-            cartesianCoordinateHashMap.put(id, coordinate);
-            return coordinate;
-        }
-    }
-
-    /**
-     *
-     */
-    private CartesianCoordinate(double x, double y, double z) throws CoordinateException {
-        assertClassInvariants(x, y, z);
-        this.x = x;
-        this.y = y;
-        this.z = z;
     }
 
     /**
@@ -110,6 +109,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      * @methodtype conversion
      * @methodproterty primitive, hook
+     * @throws CoordinateException
      */
     @Override
     public SphericCoordinate asSphericCoordinate() throws CoordinateException {
@@ -147,13 +147,6 @@ public class CartesianCoordinate extends AbstractCoordinate {
         } catch (CoordinateException e) {
             return false;
         }
-    }
-
-    @Override
-    public int hashCode() {
-        // create String of properties because the order matters
-        String properties = Integer.toString((int) Math.round(this.x)) + Integer.toString((int) Math.round(this.y)) + Integer.toString((int) Math.round(this.z));
-        return Integer.valueOf(properties);
     }
 
     @Override

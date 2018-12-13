@@ -26,93 +26,27 @@ import java.util.logging.Logger;
 public class SphericCoordinate extends AbstractCoordinate {
 
     private static final Logger log = Logger.getLogger(SphericCoordinate.class.getName());
-
+    private static final boolean normilaze = true;
+    private static final HashMap<String, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
     /**
      * latitude = phi in rad
      */
     private final double latitude;
-
-    /**
-     * @methodType getter
-     */
-    public double getLatitude() {
-        return latitude;
-    }
-
     /**
      * longitude = theta in rad
      */
     private final double longitude;
-
-    /**
-     * @methodType getter
-     */
-    public double getLongitude() {
-        return longitude;
-    }
-
     /**
      *
      */
     private final double radius;
 
     /**
-     * @methodType getter
-     */
-    public double getRadius() {
-        return radius;
-    }
-
-    /**
-     *
-     */
-    private static final boolean normilaze = true;
-
-    private static final HashMap<String, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
-
-    /**
-     * @param arg1 argument one
-     * @param arg2 argument two
-     * @param arg3 argument three
-     * @methodtype helper constructor
-     */
-
-    public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        return createCoordinateHelper(arg1, arg2, arg3, normilaze);
-    }
-
-    /**
-     * @param arg1 argument one
-     * @param arg2 argument two
-     * @param arg3 argument three
-     * @methodtype helper constructor
-     */
-
-    public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3, boolean normilaze) throws CoordinateException {
-        return createCoordinateHelper(arg1, arg2, arg3, normilaze);
-    }
-
-    private static SphericCoordinate createCoordinateHelper(double arg1, double arg2, double arg3, boolean normilaze) throws CoordinateException {
-        String id = getId(arg1, arg2, arg3);
-        SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
-        if (coordinate != null) {
-            log.info("SphericCoordinate exists");
-            return coordinate;
-        } else {
-            log.info("SphericCoordinate new");
-            coordinate = new SphericCoordinate(arg1, arg2, arg3, normilaze);
-            id = coordinate.getId(arg1, arg2, arg3);
-            sphericCoordinateHashMap.put(id, coordinate);
-            return coordinate;
-        }
-    }
-
-    /**
      * @param latitude  in rad
      * @param longitude in rad
      * @param radius    the radius
      * @param normalize boolean default = true
-     * @methodType helper
+     * @throws CoordinateException
      */
     private SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
         assertClassInvariants(latitude, longitude, radius);
@@ -130,6 +64,78 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
+     *
+     * @param latitude argument one
+     * @param longitude argument two
+     * @param radius argument three
+     * @methodtype helper
+     * @return
+     * @throws CoordinateException
+     */
+    public static synchronized SphericCoordinate createCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
+        return createCoordinateHelper(latitude, longitude, radius, normilaze);
+    }
+
+    /**
+     *
+     * @param latitude argument one
+     * @param longitude argument two
+     * @param radius argument three
+     * @methodtype helper
+     * @return
+     * @throws CoordinateException
+     */
+    public static synchronized SphericCoordinate createCoordinate(double latitude, double longitude, double radius, boolean normilaze) throws CoordinateException {
+        return createCoordinateHelper(latitude, longitude, radius, normilaze);
+    }
+
+    /**
+     *
+     * @param latitude argument one
+     * @param longitude argument two
+     * @param radius argument three
+     * @methodtype helper constructor
+     * @return
+     * @throws CoordinateException
+     */
+    private static SphericCoordinate createCoordinateHelper(double latitude, double longitude, double radius, boolean normilaze) throws CoordinateException {
+        String id = getId(latitude, longitude, radius);
+        SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
+
+        if (coordinate != null) {
+            return coordinate;
+
+        } else {
+
+            coordinate = new SphericCoordinate(latitude, longitude, radius, normilaze);
+            id = coordinate.getId(latitude, longitude, radius);
+            sphericCoordinateHashMap.put(id, coordinate);
+            return coordinate;
+        }
+    }
+
+    /**
+     * @methodType getter
+     */
+    public double getLatitude() {
+        return latitude;
+    }
+
+    /**
+     * @methodType getter
+     */
+    public double getLongitude() {
+        return longitude;
+    }
+
+    /**
+     * @methodType getter
+     */
+    public double getRadius() {
+        return radius;
+    }
+
+    /**
      * @param angle a radial angle
      * @return radial angle on a circle without multiple rounds
      * @methodType helper
@@ -142,6 +148,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * @methodtype conversion
      * @methodproterty primitive, hook
+     * @throws CoordinateException
      */
     @Override
     public CartesianCoordinate asCartesianCoordinate() throws CoordinateException {
@@ -161,6 +168,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * @param coordinate Coordinate
      * @return the actual arc length d on a sphere of radius r
+     * @throws CoordinateException
      */
     public double getActualArcLength(Coordinate coordinate) throws CoordinateException {
         double centralAngle = getCentralAngle(coordinate);

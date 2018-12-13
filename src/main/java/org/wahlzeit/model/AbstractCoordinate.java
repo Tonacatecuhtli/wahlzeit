@@ -2,6 +2,11 @@ package org.wahlzeit.model;
 
 public abstract class AbstractCoordinate implements Coordinate {
 
+    protected static String getId(double arg1, double arg2, double arg3) {
+        // create String of properties because the order matters
+        return "" + arg1 + arg2 + arg3;
+    }
+
     /**
      * calculates the cartesian distance
      *
@@ -100,10 +105,5 @@ public abstract class AbstractCoordinate implements Coordinate {
     protected void assertNotNegative(double arg) throws CoordinateException {
         if (arg < 0)
             throw new CoordinateException("argument can not be negative");
-    }
-
-    protected static String getId(double arg1, double arg2, double arg3) {
-        // create String of properties because the order matters
-        return "" + arg1 + arg2 + arg3;
     }
 }
