@@ -37,7 +37,7 @@ public class LocationTest {
 
     @Test
     public void testConstructorWithCoordinate() throws CoordinateException {
-        CartesianCoordinate cartesianCoordinate = new CartesianCoordinate(3, 3, 3);
+        CartesianCoordinate cartesianCoordinate = CartesianCoordinate.createCoordinate(3, 3, 3);
         new Location(cartesianCoordinate);
     }
 
@@ -49,6 +49,6 @@ public class LocationTest {
     @Test
     public void getCoordinatesTest() throws CoordinateException {
         Coordinate coordinate = location.getCoordinate();
-        assertEquals(coordinate, new CartesianCoordinate(5 , 4, 3));
+        assertEquals(coordinate, CartesianCoordinate.createCoordinate(5 , 4, 3));
     }
 }

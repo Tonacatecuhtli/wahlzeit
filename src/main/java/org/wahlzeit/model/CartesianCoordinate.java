@@ -90,7 +90,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    protected CartesianCoordinate(double x, double y, double z) throws CoordinateException {
+    private CartesianCoordinate(double x, double y, double z) throws CoordinateException {
         assertClassInvariants(x, y, z);
         this.x = x;
         this.y = y;

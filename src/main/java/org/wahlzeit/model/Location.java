@@ -37,7 +37,7 @@ public class Location {
      * create a location and cartesianCoordinate by supplying coordinates.
      */
     public Location(double x, double y, double z) throws CoordinateException{
-        this.coordinate = new CartesianCoordinate(x, y, z);
+        this.coordinate = CartesianCoordinate.createCoordinate(x, y, z);
 
     }
 

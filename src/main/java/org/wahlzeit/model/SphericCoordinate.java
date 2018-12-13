@@ -120,7 +120,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param radius    the radius
      * @methodType constructor
      */
-    protected SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
+    private SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
         // normalize default is set to true
         assertClassInvariants(latitude, longitude, radius);
 
@@ -143,7 +143,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param normalize boolean default = true
      * @methodType helper
      */
-    protected SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
+    private SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
         this.normalize = normalize;
         assertClassInvariants(latitude, longitude, radius);
 
