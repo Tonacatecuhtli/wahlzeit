@@ -25,7 +25,7 @@ public interface Coordinate {
     /**
      * @methodtype helper constructor
      */
-    public Coordinate getInstance(double arg1, double arg2, double arg3) throws CoordinateException;
+    public Coordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException;
 
     /**
      *	@methodtype conversion

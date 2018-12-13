@@ -73,7 +73,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
      * @methodtype helper constructor
      */
     @Override
-    public Coordinate getInstance(double arg1, double arg2, double arg3) throws CoordinateException {
+    public Coordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
         int id = hashCode(arg1,arg2,arg3);
         CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
         if(coordinate != null){
