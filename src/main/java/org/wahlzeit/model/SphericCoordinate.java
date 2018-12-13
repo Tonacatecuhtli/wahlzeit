@@ -30,7 +30,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * latitude = phi in rad
      */
-    private double latitude;
+    private final double latitude;
 
     /**
      * @methodType getter
@@ -42,7 +42,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * longitude = theta in rad
      */
-    private double longitude;
+    private final double longitude;
 
     /**
      * @methodType getter
@@ -54,7 +54,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private double radius;
+    private final double radius;
 
     /**
      * @methodType getter
@@ -70,13 +70,13 @@ public class SphericCoordinate extends AbstractCoordinate {
 
     private final HashMap<Integer, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
     /**
-     * @param arg1
-     * @param arg2
-     * @param arg3
+     * @param arg1 argument one
+     * @param arg2 argument two
+     * @param arg3 argument three
      * @methodtype helper constructor
      */
-    @Override
-    public Coordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
+
+    public SphericCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
         int id = hashCode(arg1,arg2,arg3);
         SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
         if(coordinate != null){
@@ -90,8 +90,6 @@ public class SphericCoordinate extends AbstractCoordinate {
             return coordinate;
         }
     }
-
-    public SphericCoordinate(){};
 
     /**
      * @param latitude  in rad

@@ -33,14 +33,11 @@ public class CoordinateTest {
     private static final Logger log = Logger.getLogger(CoordinateTest.class.getName());
 
 
-    private Coordinate cc1;
-    private Coordinate cc2;
+    private CartesianCoordinate cc1;
+    private CartesianCoordinate cc2;
     private SphericCoordinate sc1;
-    private Coordinate sc2;
+    private SphericCoordinate sc2;
     private SphericCoordinate sc3;
-
-    private CartesianCoordinate cartesianCoordinate = new CartesianCoordinate();
-    private SphericCoordinate sphericCoordinate = new SphericCoordinate();
 
 
     private double cartesianDistanceCc1Cc2;
@@ -56,14 +53,14 @@ public class CoordinateTest {
 
     @Before
     public void setUp() throws CoordinateException {
-        cc1 = cartesianCoordinate.createCoordinate(1, 1, 1);
-        cc2 = cartesianCoordinate.createCoordinate(2, 2, 2);
+        cc1 = new CartesianCoordinate(1, 1, 1);
+        cc2 = cc1.createCoordinate(2, 2, 2);
         // cc2 with 2,2,2 - cc1 with 1,1,1 = sqrt(3)
         cartesianDistanceCc1Cc2 = Math.sqrt(3);
 
         sc1 = new SphericCoordinate(1, 1, 1);
-        sc2 = sphericCoordinate.createCoordinate(2, 2, 2);
-        sc3 = new SphericCoordinate(3, 4, 5);
+        sc2 = sc1.createCoordinate(2, 2, 2);
+        sc3 = sc1.createCoordinate(3, 4, 5);
 
         centralAngleSc1Sc2 = 0.8715212348676055;
         actualArcLengthSc1Sc3 = 4.327295325724265;

@@ -67,13 +67,12 @@ public class CartesianCoordinate extends AbstractCoordinate {
 
     private final HashMap<Integer, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
     /**
-     * @param arg1
-     * @param arg2
-     * @param arg3
+     * @param arg1 argument one
+     * @param arg2 argument two
+     * @param arg3 argument three
      * @methodtype helper constructor
      */
-    @Override
-    public Coordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
+    public CartesianCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
         int id = hashCode(arg1,arg2,arg3);
         CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
         if(coordinate != null){

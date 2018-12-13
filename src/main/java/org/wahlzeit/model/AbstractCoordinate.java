@@ -3,11 +3,6 @@ package org.wahlzeit.model;
 public abstract class AbstractCoordinate implements Coordinate {
 
     /**
-     * @methodtype helper constructor
-     */
-    public abstract Coordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException;
-
-    /**
      * calculates the cartesian distance
      * @param coordinate
      * @return cartesianDistance
