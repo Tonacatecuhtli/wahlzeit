@@ -68,7 +68,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     private boolean normalize = true;
 
-    private final HashMap<Integer, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
+    private static final HashMap<String, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
+
     /**
      * @param arg1 argument one
      * @param arg2 argument two
@@ -76,8 +77,8 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @methodtype helper constructor
      */
 
-    public SphericCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        int id = hashCode(arg1,arg2,arg3);
+    public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
+        String id = getId(arg1,arg2,arg3);
         SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
         if(coordinate != null){
             log.info("SphericCoordinate exists");
@@ -85,7 +86,29 @@ public class SphericCoordinate extends AbstractCoordinate {
         } else {
             log.info("SphericCoordinate new");
             coordinate = new SphericCoordinate(arg1, arg2, arg3);
-            id = coordinate.hashCode();
+            id = coordinate.getId(arg1, arg2, arg3);
+            sphericCoordinateHashMap.put(id, coordinate);
+            return coordinate;
+        }
+    }
+
+    /**
+     * @param arg1 argument one
+     * @param arg2 argument two
+     * @param arg3 argument three
+     * @methodtype helper constructor
+     */
+
+    public static synchronized SphericCoordinate createCoordinate(double arg1, double arg2, double arg3, boolean normilaze) throws CoordinateException {
+        String id = getId(arg1,arg2,arg3);
+        SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
+        if(coordinate != null){
+            log.info("SphericCoordinate exists");
+            return coordinate;
+        } else {
+            log.info("SphericCoordinate new");
+            coordinate = new SphericCoordinate(arg1, arg2, arg3, normilaze);
+            id = coordinate.getId(arg1, arg2, arg3);
             sphericCoordinateHashMap.put(id, coordinate);
             return coordinate;
         }
@@ -95,7 +118,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      * @param latitude  in rad
      * @param longitude in rad
      * @param radius    the radius
-     * @methodType helper
+     * @methodType constructor
      */
     protected SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
         // normalize default is set to true
@@ -202,12 +225,5 @@ public class SphericCoordinate extends AbstractCoordinate {
         if (latitude > twoPi || longitude > twoPi)
             throw new IllegalArgumentException("If you aren't normalizing, radiants shouldn't be bigger than two pi");
 
-    }
-
-    @Override
-    public int hashCode() {
-        // create String of properties because the order matters
-        String properties = Integer.toString((int) Math.round(this.longitude)) + Integer.toString((int) Math.round(this.latitude)) + Integer.toString((int) Math.round(this.radius));
-        return Integer.valueOf(properties);
     }
 }

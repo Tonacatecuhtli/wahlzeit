@@ -65,15 +65,15 @@ public class CartesianCoordinate extends AbstractCoordinate {
     }
 
 
-    private final HashMap<Integer, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
+    private static final HashMap<String, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
     /**
      * @param arg1 argument one
      * @param arg2 argument two
      * @param arg3 argument three
      * @methodtype helper constructor
      */
-    public CartesianCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
-        int id = hashCode(arg1,arg2,arg3);
+    public static synchronized CartesianCoordinate createCoordinate(double arg1, double arg2, double arg3) throws CoordinateException {
+        String id = getId(arg1,arg2,arg3);
         CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
         if(coordinate != null){
             log.info("CartesianCoordinate exists");
@@ -81,13 +81,11 @@ public class CartesianCoordinate extends AbstractCoordinate {
         } else {
             log.info("CartesianCoordinate new");
             coordinate = new CartesianCoordinate(arg1, arg2, arg3);
-            id = coordinate.hashCode();
+            id = coordinate.getId(arg1, arg2, arg3);
             cartesianCoordinateHashMap.put(id, coordinate);
             return coordinate;
         }
     }
-
-    public CartesianCoordinate(){}
 
     /**
      *
