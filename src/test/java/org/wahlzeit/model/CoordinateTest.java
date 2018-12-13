@@ -35,9 +35,13 @@ public class CoordinateTest {
 
     private CartesianCoordinate cc1;
     private CartesianCoordinate cc2;
+    private CartesianCoordinate cc3;
     private SphericCoordinate sc1;
     private SphericCoordinate sc2;
     private SphericCoordinate sc3;
+
+    private CartesianCoordinate cartesianCoordinate = new CartesianCoordinate();
+
 
     private double cartesianDistanceCc1Cc2;
     private double centralAngleSc1Sc2;
@@ -54,6 +58,7 @@ public class CoordinateTest {
     public void setUp() throws CoordinateException {
         cc1 = new CartesianCoordinate(1, 1, 1);
         cc2 = new CartesianCoordinate(2, 2, 2);
+        cc3 = new CartesianCoordinate(1.5, 2.3, 4.4);
         // cc2 with 2,2,2 - cc1 with 1,1,1 = sqrt(3)
         cartesianDistanceCc1Cc2 = Math.sqrt(3);
 
@@ -64,6 +69,23 @@ public class CoordinateTest {
         centralAngleSc1Sc2 = 0.8715212348676055;
         actualArcLengthSc1Sc3 = 4.327295325724265;
 
+    }
+
+    @Test
+    public void testHash() {
+        assertEquals(cc3.hashCode(), cc3.hashCode(1.5, 2.3, 4.4));
+        try {
+            Coordinate coordinate = cartesianCoordinate.getInstance(1.4,5,7);
+            Coordinate coordinate1 = cartesianCoordinate.getInstance(1.4,5,7);
+            Coordinate coordinate2 = cartesianCoordinate.getInstance(1.4,5,7);
+
+            log.info(coordinate.toString());
+            log.info(coordinate1.toString());
+            log.info(coordinate2.toString());
+
+        } catch (Exception e){
+            log.info(e.toString());
+        }
     }
 
     @Test(expected = CoordinateException.class)

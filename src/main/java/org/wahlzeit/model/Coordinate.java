@@ -23,6 +23,11 @@ package org.wahlzeit.model;
 public interface Coordinate {
 
     /**
+     * @methodtype helper constructor
+     */
+    public Coordinate getInstance(double arg1, double arg2, double arg3) throws CoordinateException;
+
+    /**
      *	@methodtype conversion
      */
     public CartesianCoordinate asCartesianCoordinate() throws CoordinateException;

@@ -20,11 +20,17 @@
 
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+import java.util.logging.Logger;
+
 public class SphericCoordinate extends AbstractCoordinate {
+
+    private static final Logger log = Logger.getLogger(SphericCoordinate.class.getName());
+
     /**
      * latitude = phi in rad
      */
-    private final double latitude;
+    private double latitude;
 
     /**
      * @methodType getter
@@ -36,7 +42,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      * longitude = theta in rad
      */
-    private final double longitude;
+    private double longitude;
 
     /**
      * @methodType getter
@@ -48,7 +54,7 @@ public class SphericCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private final double radius;
+    private double radius;
 
     /**
      * @methodType getter
@@ -62,13 +68,38 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     private boolean normalize = true;
 
+    private final HashMap<Integer, SphericCoordinate> sphericCoordinateHashMap = new HashMap<>();
     /**
-     * @methodType helper
-     * @param latitude in rad
-     * @param longitude in rad
-     * @param radius the radius
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @methodtype helper constructor
      */
-    public SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException{
+    @Override
+    public Coordinate getInstance(double arg1, double arg2, double arg3) throws CoordinateException {
+        int id = hashCode(arg1,arg2,arg3);
+        SphericCoordinate coordinate = sphericCoordinateHashMap.get(id);
+        if(coordinate != null){
+            log.info("SphericCoordinate exists");
+            return coordinate;
+        } else {
+            log.info("SphericCoordinate new");
+            coordinate = new SphericCoordinate(arg1, arg2, arg3);
+            id = coordinate.hashCode();
+            sphericCoordinateHashMap.put(id, coordinate);
+            return coordinate;
+        }
+    }
+
+    public SphericCoordinate(){};
+
+    /**
+     * @param latitude  in rad
+     * @param longitude in rad
+     * @param radius    the radius
+     * @methodType helper
+     */
+    protected SphericCoordinate(double latitude, double longitude, double radius) throws CoordinateException {
         // normalize default is set to true
         assertClassInvariants(latitude, longitude, radius);
 
@@ -85,13 +116,13 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * @methodType helper
-     * @param latitude in rad
+     * @param latitude  in rad
      * @param longitude in rad
-     * @param radius the radius
+     * @param radius    the radius
      * @param normalize boolean default = true
+     * @methodType helper
      */
-    public SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
+    protected SphericCoordinate(double latitude, double longitude, double radius, boolean normalize) throws CoordinateException {
         this.normalize = normalize;
         assertClassInvariants(latitude, longitude, radius);
 
@@ -108,9 +139,9 @@ public class SphericCoordinate extends AbstractCoordinate {
     }
 
     /**
-     * @methodType helper
      * @param angle a radial angle
      * @return radial angle on a circle without multiple rounds
+     * @methodType helper
      */
     private double normalizeRadAngle(double angle) {
         double twoPi = 2 * Math.PI;
@@ -123,6 +154,7 @@ public class SphericCoordinate extends AbstractCoordinate {
      */
     @Override
     public CartesianCoordinate asCartesianCoordinate() throws CoordinateException {
+
         return new CartesianCoordinate(this.latitude, this.longitude, this.radius);
     }
 
@@ -155,7 +187,7 @@ public class SphericCoordinate extends AbstractCoordinate {
         try {
             SphericCoordinate sphericCoordinate = coordinate.asSphericCoordinate();
             return this.latitude == sphericCoordinate.latitude && this.longitude == sphericCoordinate.longitude && this.radius == sphericCoordinate.radius;
-        } catch (CoordinateException e){
+        } catch (CoordinateException e) {
             return false;
         }
     }
@@ -172,5 +204,12 @@ public class SphericCoordinate extends AbstractCoordinate {
         if (latitude > twoPi || longitude > twoPi)
             throw new IllegalArgumentException("If you aren't normalizing, radiants shouldn't be bigger than two pi");
 
+    }
+
+    @Override
+    public int hashCode() {
+        // create String of properties because the order matters
+        String properties = Integer.toString((int) Math.round(this.longitude)) + Integer.toString((int) Math.round(this.latitude)) + Integer.toString((int) Math.round(this.radius));
+        return Integer.valueOf(properties);
     }
 }

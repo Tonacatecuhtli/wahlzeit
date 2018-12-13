@@ -20,12 +20,18 @@
 
 package org.wahlzeit.model;
 
+import java.util.HashMap;
+import java.util.logging.Logger;
+
 public class CartesianCoordinate extends AbstractCoordinate {
+
+    private static final Logger log = Logger.getLogger(CartesianCoordinate.class.getName());
+
 
     /**
      *
      */
-    private final double x;
+    private double x;
 
     /**
      * @methodType getter
@@ -37,7 +43,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private final double y;
+    private double y;
 
     /**
      * @methodType getter
@@ -49,7 +55,7 @@ public class CartesianCoordinate extends AbstractCoordinate {
     /**
      *
      */
-    private final double z;
+    private double z;
 
     /**
      * @methodType getter
@@ -58,10 +64,36 @@ public class CartesianCoordinate extends AbstractCoordinate {
         return z;
     }
 
+
+    private final HashMap<Integer, CartesianCoordinate> cartesianCoordinateHashMap = new HashMap<>();
+    /**
+     * @param arg1
+     * @param arg2
+     * @param arg3
+     * @methodtype helper constructor
+     */
+    @Override
+    public Coordinate getInstance(double arg1, double arg2, double arg3) throws CoordinateException {
+        int id = hashCode(arg1,arg2,arg3);
+        CartesianCoordinate coordinate = cartesianCoordinateHashMap.get(id);
+        if(coordinate != null){
+            log.info("CartesianCoordinate exists");
+            return coordinate;
+        } else {
+            log.info("CartesianCoordinate new");
+            coordinate = new CartesianCoordinate(arg1, arg2, arg3);
+            id = coordinate.hashCode();
+            cartesianCoordinateHashMap.put(id, coordinate);
+            return coordinate;
+        }
+    }
+
+    public CartesianCoordinate(){}
+
     /**
      *
      */
-    public CartesianCoordinate(double x, double y, double z) throws CoordinateException {
+    protected CartesianCoordinate(double x, double y, double z) throws CoordinateException {
         assertClassInvariants(x, y, z);
         this.x = x;
         this.y = y;
@@ -114,8 +146,25 @@ public class CartesianCoordinate extends AbstractCoordinate {
         try {
             CartesianCoordinate cartesianCoordinate = coordinate.asCartesianCoordinate();
             return this.x == cartesianCoordinate.x && this.y == cartesianCoordinate.y && this.z == cartesianCoordinate.z;
-        } catch (CoordinateException e){
+        } catch (CoordinateException e) {
             return false;
         }
+    }
+
+    @Override
+    public int hashCode() {
+        // create String of properties because the order matters
+        String properties = Integer.toString((int) Math.round(this.x)) + Integer.toString((int) Math.round(this.y)) + Integer.toString((int) Math.round(this.z));
+        return Integer.valueOf(properties);
+    }
+
+    @Override
+    public String toString() {
+        return "CartesianCoordinate{" +
+                "x=" + x +
+                ", y=" + y +
+                ", z=" + z +
+                ", cartesianCoordinateHashMap=" + cartesianCoordinateHashMap.toString() +
+                '}';
     }
 }
