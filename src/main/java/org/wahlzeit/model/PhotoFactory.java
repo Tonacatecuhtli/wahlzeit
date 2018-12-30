@@ -20,6 +20,7 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.PatternInstance;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
@@ -27,68 +28,75 @@ import java.util.logging.Logger;
 /**
  * An Abstract Factory for creating photos and related objects.
  */
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "AbstractFactory: PhotoFactory",
+                "ConcreteFactory: NebulaPhotoFactory"
+        }
+)
 public class PhotoFactory {
 
-	private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());
-	/**
-	 * Hidden singleton instance; needs to be initialized from the outside.
-	 */
-	private static PhotoFactory instance = null;
+    private static final Logger log = Logger.getLogger(PhotoFactory.class.getName());
+    /**
+     * Hidden singleton instance; needs to be initialized from the outside.
+     */
+    private static PhotoFactory instance = null;
 
-	/**
-	 *
-	 */
-	protected PhotoFactory() {
-		// do nothing
-	}
+    /**
+     *
+     */
+    protected PhotoFactory() {
+        // do nothing
+    }
 
-	/**
-	 * Hidden singleton instance; needs to be initialized from the outside.
-	 */
-	public static void initialize() {
-		getInstance(); // drops result due to getInstance() side-effects
-	}
+    /**
+     * Hidden singleton instance; needs to be initialized from the outside.
+     */
+    public static void initialize() {
+        getInstance(); // drops result due to getInstance() side-effects
+    }
 
-	/**
-	 * Public singleton access method.
-	 */
-	public static synchronized PhotoFactory getInstance() {
-		if (instance == null) {
-			log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
-			setInstance(new PhotoFactory());
-		}
+    /**
+     * Public singleton access method.
+     */
+    public static synchronized PhotoFactory getInstance() {
+        if (instance == null) {
+            log.config(LogBuilder.createSystemMessage().addAction("setting generic PhotoFactory").toString());
+            setInstance(new PhotoFactory());
+        }
 
-		return instance;
-	}
+        return instance;
+    }
 
-	/**
-	 * Method to set the singleton instance of PhotoFactory.
-	 */
-	protected static synchronized void setInstance(PhotoFactory photoFactory) {
-		assertInstanceIsNull(instance);
+    /**
+     * Method to set the singleton instance of PhotoFactory.
+     */
+    protected static synchronized void setInstance(PhotoFactory photoFactory) {
+        assertInstanceIsNull(instance);
 
-		instance = photoFactory;
-	}
+        instance = photoFactory;
+    }
 
-	/**
-	 * @methodtype factory
-	 */
-	public Photo createPhoto() {
-		return new Photo();
-	}
+    /**
+     * @methodtype factory
+     */
+    public Photo createPhoto() {
+        return new Photo();
+    }
 
-	/**
-	 * Creates a new photo with the specified id
-	 */
-	public Photo createPhoto(PhotoId id) {
-		return new Photo(id);
-	}
+    /**
+     * Creates a new photo with the specified id
+     */
+    public Photo createPhoto(PhotoId id) {
+        return new Photo(id);
+    }
 
-	/**
-	 * Loads a photo. The Java object is loaded from the Google Datastore, the Images in all sizes are loaded from the
-	 * Google Cloud storage.
-	 */
-	public Photo loadPhoto(PhotoId id) {
+    /**
+     * Loads a photo. The Java object is loaded from the Google Datastore, the Images in all sizes are loaded from the
+     * Google Cloud storage.
+     */
+    public Photo loadPhoto(PhotoId id) {
 	   /* Photo result =
                 OfyService.ofy().load().type(Photo.class).ancestor(KeyFactory.createKey("Application", "Wahlzeit")).filter(Photo.ID, id).first().now();
         for (PhotoSize size : PhotoSize.values()) {
@@ -97,33 +105,33 @@ public class PhotoFactory {
 
 
         }*/
-		return null;
-	}
+        return null;
+    }
 
 
-	/**
-	 *
-	 */
-	public PhotoFilter createPhotoFilter() {
-		return new PhotoFilter();
-	}
+    /**
+     *
+     */
+    public PhotoFilter createPhotoFilter() {
+        return new PhotoFilter();
+    }
 
-	/**
-	 *
-	 */
-	public PhotoTagCollector createPhotoTagCollector() {
-		return new PhotoTagCollector();
-	}
+    /**
+     *
+     */
+    public PhotoTagCollector createPhotoTagCollector() {
+        return new PhotoTagCollector();
+    }
 
-	/**
-	 * @methodType assertion
-	 * @param instance a PhotoFactory
-	 * @throws IllegalStateException
-	 */
-	protected static void assertInstanceIsNull(PhotoFactory instance) throws IllegalStateException {
-		if (instance != null) {
-			throw new IllegalStateException("attempt to initalize PhotoFactory twice");
-		}
-	}
+    /**
+     * @param instance a PhotoFactory
+     * @throws IllegalStateException
+     * @methodType assertion
+     */
+    protected static void assertInstanceIsNull(PhotoFactory instance) throws IllegalStateException {
+        if (instance != null) {
+            throw new IllegalStateException("attempt to initalize PhotoFactory twice");
+        }
+    }
 
 }

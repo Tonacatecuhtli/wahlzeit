@@ -1,9 +1,17 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.PatternInstance;
 import org.wahlzeit.services.LogBuilder;
 
 import java.util.logging.Logger;
 
+@PatternInstance(
+        patternName = "Abstract Factory",
+        participants = {
+                "AbstractFactory: PhotoFactory",
+                "ConcreteFactory: NebulaPhotoFactory"
+        }
+)
 public class NebulaPhotoFactory extends PhotoFactory {
 
     private static final Logger log = Logger.getLogger(NebulaPhotoFactory.class.getName());
