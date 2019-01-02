@@ -20,6 +20,17 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.PatternInstance;
+
+@PatternInstance(
+        patternName = "Strategy",
+        participants = {
+                "Strategy: Coordinate / AbstractCoordinate",
+                "ConcreteStrategyA: CartesianCoordinate",
+                "ConcreteStrategyB: SphericCoordinate",
+                "Context: Location"
+        }
+)
 public class Location {
     /**
      *

@@ -1,5 +1,16 @@
 package org.wahlzeit.model;
 
+import org.wahlzeit.PatternInstance;
+
+@PatternInstance(
+        patternName = "Strategy",
+        participants = {
+                "Strategy: Coordinate / AbstractCoordinate",
+                "ConcreteStrategyA: CartesianCoordinate",
+                "ConcreteStrategyB: SphericCoordinate",
+                "Context: Location"
+        }
+)
 public abstract class AbstractCoordinate implements Coordinate {
 
     protected static String getId(double arg1, double arg2, double arg3) {

@@ -20,9 +20,20 @@
 
 package org.wahlzeit.model;
 
+import org.wahlzeit.PatternInstance;
+
 import java.util.HashMap;
 import java.util.logging.Logger;
 
+@PatternInstance(
+        patternName = "Strategy",
+        participants = {
+                "Strategy: Coordinate / AbstractCoordinate",
+                "ConcreteStrategyA: CartesianCoordinate",
+                "ConcreteStrategyB: SphericCoordinate",
+                "Context: Location"
+        }
+)
 public class SphericCoordinate extends AbstractCoordinate {
 
     private static final Logger log = Logger.getLogger(SphericCoordinate.class.getName());
