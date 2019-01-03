@@ -44,7 +44,7 @@ import java.util.logging.Logger;
 @PatternInstance(
 		patternName = "Object Adapter",
 		participants = {
-				"Adaptee: ObjectifyService",
+				"Adaptee: google.appengine.api.images",
 				"Adapter: DatastoreAdapter",
 				"Target: ImageStorage",
 				"Client: e.g. PhotoManager"
