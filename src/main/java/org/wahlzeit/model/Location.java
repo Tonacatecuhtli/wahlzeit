@@ -20,7 +20,7 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 
 @PatternInstance(
         patternName = "Strategy",

@@ -24,7 +24,7 @@ import com.google.appengine.api.images.Image;
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
 
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 import org.wahlzeit.model.persistence.ImageStorage;
 import org.wahlzeit.services.LogBuilder;
 import org.wahlzeit.services.ObjectManager;

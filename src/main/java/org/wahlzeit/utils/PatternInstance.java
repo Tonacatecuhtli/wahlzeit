@@ -1,4 +1,4 @@
-package org.wahlzeit;
+package org.wahlzeit.utils;
 
 public @interface PatternInstance {
     String patternName();

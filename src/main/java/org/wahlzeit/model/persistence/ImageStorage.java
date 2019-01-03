@@ -1,6 +1,6 @@
 package org.wahlzeit.model.persistence;
 
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 import org.wahlzeit.model.PhotoSize;
 import org.wahlzeit.services.LogBuilder;
 

@@ -1,6 +1,6 @@
 package org.wahlzeit.model;
 
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.logging.Logger;
 

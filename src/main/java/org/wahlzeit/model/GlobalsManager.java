@@ -2,7 +2,7 @@ package org.wahlzeit.model;
 
 import com.googlecode.objectify.ObjectifyService;
 import com.googlecode.objectify.Work;
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 import org.wahlzeit.services.ObjectManager;
 import org.wahlzeit.servlets.AbstractServlet;
 

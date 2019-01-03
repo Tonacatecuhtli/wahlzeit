@@ -20,7 +20,7 @@
 
 package org.wahlzeit.model;
 
-import org.wahlzeit.PatternInstance;
+import org.wahlzeit.utils.PatternInstance;
 
 import java.util.HashMap;
 import java.util.logging.Logger;
