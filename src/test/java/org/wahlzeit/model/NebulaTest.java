@@ -13,6 +13,7 @@ public class NebulaTest {
 
     private NebulaManager nebulaManager = NebulaManager.getInstance();
     private NebulaType nt;
+    private NebulaType ntSub;
 
     private static final Logger log = Logger.getLogger(NebulaTest.class.getName());
 
@@ -20,6 +21,8 @@ public class NebulaTest {
     @Before
     public void setUp() {
         nt = nebulaManager.createNebulaType("Planetary");
+        ntSub = nebulaManager.createNebulaType("Sub");
+        nt.addSubType(ntSub);
     }
     @Test
     public void createNebulaType() {
@@ -68,5 +71,10 @@ public class NebulaTest {
             count++;
         }
         assertEquals(count, 2);
+    }
+
+    @Test
+    public void testIsSubType(){
+        assertEquals(ntSub.isSubtype(), true);
     }
 }
