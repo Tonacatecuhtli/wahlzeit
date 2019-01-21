@@ -6,7 +6,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class NebulaType {
-    private String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
+    protected String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
 
     protected NebulaType superType = null;
     protected Set<NebulaType> subTypes = new HashSet<NebulaType>();
@@ -39,11 +39,12 @@ public class NebulaType {
         return subTypes.iterator();
     }
     /**
-     * @methodType setter
+     * @methodType setter, primitive
      */
     public void addSubType(NebulaType nt){
         assert (nt != null): "tried to set null sub-type";
         nt.setSuperType(this);
+        this.subTypes.add(nt);
     }
     /**
      * @methodType query
