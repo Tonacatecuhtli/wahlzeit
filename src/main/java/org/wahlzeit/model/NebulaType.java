@@ -63,4 +63,11 @@ public class NebulaType {
 
         return false;
     }
+
+    /**
+     * @methodType query
+     */
+    public boolean isSubtype () {
+        return superType != null;
+    }
 }
