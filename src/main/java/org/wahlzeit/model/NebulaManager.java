@@ -1,18 +1,17 @@
 package org.wahlzeit.model;
 
 import java.util.HashMap;
-import java.util.HashSet;
 
 public class NebulaManager {
 
-    private final NebulaManager instance = new NebulaManager();
+    private static final NebulaManager instance = new NebulaManager();
     private HashMap<Integer, Nebula> nebulaHashMap = new HashMap<>();
     private HashMap<String, NebulaType> nebulaTypes = new HashMap<>();
 
     /**
      * @methodType getter
      */
-    public NebulaManager getInstance(){
+    public static NebulaManager getInstance(){
         return instance;
     }
     /**
