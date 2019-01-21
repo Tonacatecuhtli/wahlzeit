@@ -6,10 +6,10 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class NebulaType {
-    protected String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
+    private String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
 
-    protected NebulaType superType = null;
-    protected Set<NebulaType> subTypes = new HashSet<NebulaType>();
+    private NebulaType superType = null;
+    private Set<NebulaType> subTypes = new HashSet<NebulaType>();
     /**
      * @methodType constructor
      */
@@ -22,6 +22,14 @@ public class NebulaType {
     public Nebula createInstance(Integer discoverTimestamp, Location location) {
         return new Nebula(this, discoverTimestamp, location);
     }
+
+    /**
+     * @methodType getter
+     */
+    public String getName() {
+        return name;
+    }
+
     /**
      * @methodType getter
      */

@@ -43,8 +43,8 @@ public class NebulaTest {
         nt3.addSubType(nt2);
         nt.addSubType(nt3);
 
-        assertEquals(nt2.getSuperType().name, "bigger");
-        assertEquals(nt3.getSuperType().name, "Planetary");
+        assertEquals(nt2.getSuperType().getName(), "bigger");
+        assertEquals(nt3.getSuperType().getName(), "Planetary");
     }
 
     @Test
