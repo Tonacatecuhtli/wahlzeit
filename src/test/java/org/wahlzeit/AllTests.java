@@ -43,6 +43,7 @@ import org.wahlzeit.utils.VersionTest;
         GuestTest.class,
         LocationTest.class,
         NebulaPhotoFactoryTest.class,
+        NebulaTest.class,
         PhotoFilterTest.class,
         TagsTest.class,
         UserStatusTest.class,

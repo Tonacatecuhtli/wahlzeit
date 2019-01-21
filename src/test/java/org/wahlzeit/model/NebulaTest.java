@@ -23,7 +23,7 @@ public class NebulaTest {
     }
     @Test
     public void createNebulaType() {
-        nt = nebulaManager.createNebulaType("H II Region");
+        NebulaType nebulaType = nebulaManager.createNebulaType("H II Region");
     }
 
     @Test
