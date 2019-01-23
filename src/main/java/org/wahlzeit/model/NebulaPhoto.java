@@ -30,6 +30,27 @@ import java.util.logging.Logger;
                 "ConcreteProduct: NebulaPhoto"
         }
 )
+
+/**
+ * Creation of a NebulaPhoto
+ *
+ * Sequence of calls leading to a new object:
+ *
+ * the creation of NebulaPhotos is handled by the NebulaPhotoFactory,
+ * which supplies a createPhoto factory method. This is called in PhotoUtils createPhoto method.
+ * which in turn is called by NebulaPhotoManager because PhotoManager actually instantiates a NebulaPhotoManger.
+ * In short:
+ * NebulaPhotoManager.createPhoto(...) -> PhotoUtils.createPhoto(...) -> NebulaPhotoFactory.createPhoto(...)
+ *
+ * Design Space solution
+ *
+ * 1. Delegation: separate-object
+ * 2. Selection: By-subclassing
+ * 3. Configuration: In-code
+ * 4: Instantiation: By-class-object
+ * 5: Initialization: In-second-step
+ * 6: Building: Default
+ */
 public class NebulaPhoto extends Photo {
 
     /**
