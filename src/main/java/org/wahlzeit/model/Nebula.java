@@ -34,7 +34,7 @@ package org.wahlzeit.model;
  * Design Space solution
  *
  * 1. Delegation: separate-object
- * 2. Selection: On-the-spot
+ * 2. Selection: By-mapping
  * 3. Configuration: In-code
  * 4: Instantiation: In-code
  * 5: Initialization: Default
