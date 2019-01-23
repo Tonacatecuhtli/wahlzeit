@@ -20,6 +20,26 @@
 
 package org.wahlzeit.model;
 
+/**
+ * Creation of a Nebula
+ *
+ * the creation of a Nebula is handled by the NebulaManager,
+ * which supplies a createNebula factory method. Which also creates a NebulaType if it
+ * doesn't exists jet.
+ * It also supplies a createNebulaType factory method with which new NebulaTypes can be created.
+ * A NebulaPhotos constructor uses the NebulaManager to create a Nebula.
+ *
+ * NebulaPhotoManager(...) -> NebulaPhotoManager.createNebula(...) -> NebulaType(...) -> Nebula(...)
+ *
+ * Design Space solution
+ *
+ * 1. Delegation: separate-object
+ * 2. Selection: On-the-spot
+ * 3. Configuration: In-code
+ * 4: Instantiation: In-code
+ * 5: Initialization: Default
+ * 6: Building: Default
+ */
 public class Nebula {
     final private int discoverTimestamp;
     final private Location location;
