@@ -78,7 +78,7 @@ public class NebulaPhotoFactory extends PhotoFactory {
     /**
      * @methodtype factory
      */
-    public NebulaPhoto createPhoto(PhotoId id, double magnitude){
-        return new NebulaPhoto(id, magnitude);
+    public NebulaPhoto createPhoto(PhotoId myId, String typeName, Integer discoveryTimestamp, Location location){
+        return new NebulaPhoto(myId, typeName, discoveryTimestamp, location);
     }
 }

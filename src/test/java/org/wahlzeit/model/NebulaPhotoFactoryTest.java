@@ -16,11 +16,18 @@ public class NebulaPhotoFactoryTest {
             around(new RegisteredOfyEnvironmentProvider());
 
     @Test
-    public void testMagnitudeConstructor() {
+    public void testConstructorWithNebula() throws CoordinateException {
         NebulaPhotoFactory nebulaPhotoFactory = NebulaPhotoFactory.getInstance();
         assertTrue(nebulaPhotoFactory.getClass().getName() == NebulaPhotoFactory.class.getName());
 
-        NebulaPhoto nebulaPhoto = nebulaPhotoFactory.createPhoto(new PhotoId(1), 5.5);
+        Location location = new Location(CartesianCoordinate.createCoordinate(1,2,3));
+
+
+        NebulaPhoto nebulaPhoto = nebulaPhotoFactory.createPhoto(
+                new PhotoId(1),
+                "Planetary",
+                10,
+                location);
         assertEquals(nebulaPhoto.getId().asInt(), 1);
     }
 }

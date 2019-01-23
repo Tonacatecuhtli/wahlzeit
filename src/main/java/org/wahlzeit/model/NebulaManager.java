@@ -20,6 +20,11 @@ public class NebulaManager {
     public Nebula createNebula(String typeName, Integer discoverTimestamp, Location location){
 
         NebulaType nt = nebulaTypes.get(typeName);
+
+        if(nt == null){
+            nt = createNebulaType(typeName);
+        }
+
         Nebula result = nt.createInstance(discoverTimestamp, location);
 
         if(nebulaHashMap.containsKey(result.hashCode())){

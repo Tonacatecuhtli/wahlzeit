@@ -44,7 +44,8 @@ public class NebulaPhoto extends Photo {
     /**
      * @methodtype constructor
      */
-    public NebulaPhoto(String typeName, int discoveryTimestamp, Location location){
+    public NebulaPhoto(PhotoId myId, String typeName, Integer discoveryTimestamp, Location location){
+        id = myId;
         nebula = NebulaManager.getInstance().createNebula(typeName, discoveryTimestamp, location);
     }
 }
