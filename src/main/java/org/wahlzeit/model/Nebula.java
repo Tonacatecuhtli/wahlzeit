@@ -37,7 +37,7 @@ package org.wahlzeit.model;
  * 2. Selection: By-mapping
  * 3. Configuration: In-code
  * 4: Instantiation: In-code
- * 5: Initialization: Default
+ * 5: Initialization: In-second-step
  * 6: Building: Default
  */
 public class Nebula {
