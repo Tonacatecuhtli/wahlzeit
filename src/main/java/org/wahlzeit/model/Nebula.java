@@ -41,8 +41,7 @@ package org.wahlzeit.model;
  * 6: Building: Default
  */
 public class Nebula {
-    final private int discoverTimestamp;
-    final private Location location;
+    // Nebula-NebulaType-Collaboration
     final private NebulaType type;
     /**
      * @methodType constructor
@@ -58,6 +57,10 @@ public class Nebula {
     public NebulaType getType() {
         return type;
     }
+
+    // Client-Nebula-Collaboration
+    final private int discoverTimestamp;
+    final private Location location;
     /**
      * @methodType getter
      */

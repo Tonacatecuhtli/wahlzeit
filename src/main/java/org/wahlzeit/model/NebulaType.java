@@ -24,8 +24,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 public class NebulaType {
-    private String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
 
+    // Client-NebulaType-Collaboration
+    private String name; // e.g. H II Region, Planetary, Supernova remnant, Dark nebula, Diffuse nebula
     private NebulaType superType = null;
     private Set<NebulaType> subTypes = new HashSet<NebulaType>();
     /**
@@ -40,7 +41,6 @@ public class NebulaType {
     public Nebula createInstance(Integer discoverTimestamp, Location location) {
         return new Nebula(this, discoverTimestamp, location);
     }
-
     /**
      * @methodType getter
      */
@@ -90,7 +90,6 @@ public class NebulaType {
 
         return false;
     }
-
     /**
      * @methodType query
      */

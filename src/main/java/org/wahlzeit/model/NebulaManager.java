@@ -23,16 +23,18 @@ import java.util.HashMap;
 
 public class NebulaManager {
 
+    // Client-NebulaManager-Collaboration
+    private HashMap<String, NebulaType> nebulaTypes = new HashMap<>();
     private static final NebulaManager instance = new NebulaManager();
     private HashMap<Integer, Nebula> nebulaHashMap = new HashMap<>();
-    private HashMap<String, NebulaType> nebulaTypes = new HashMap<>();
-
     /**
      * @methodType getter
      */
     public static NebulaManager getInstance(){
         return instance;
     }
+
+    // NebulaManager-Nebula-Collaboration
     /**
      * @methodtype factory
      */
@@ -53,6 +55,8 @@ public class NebulaManager {
         nebulaHashMap.put(result.hashCode(), result);
         return result;
     }
+
+    // NebulaManager-NebulaType-Collaboration
     /**
      * @methodtype factory
      */

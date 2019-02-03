@@ -53,6 +53,7 @@ import java.util.logging.Logger;
  */
 public class NebulaPhoto extends Photo {
 
+    // NebulaPhoto-Nebula-Collaboration
     /**
      * @methodType getter
      * @return
@@ -60,9 +61,9 @@ public class NebulaPhoto extends Photo {
     public Nebula getNebula() {
         return nebula;
     }
-
     private Nebula nebula;
 
+    // Client-NebulaPhoto-Collaboration
     /**
      * @methodtype constructor
      */
@@ -71,7 +72,6 @@ public class NebulaPhoto extends Photo {
         id = PhotoId.getNextId();
         incWriteCount();
     }
-
     /**
      * @methodtype constructor
      */
@@ -81,6 +81,7 @@ public class NebulaPhoto extends Photo {
         incWriteCount();
     }
 
+    // Client-NebulaPhoto-NebulaManager-Collaboration
     /**
      * @methodtype constructor
      */
